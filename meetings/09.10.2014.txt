@@ -21,3 +21,6 @@
     - Load
     - Save
     - Exit
+- Started to discuss possible game plot:
+    - Survival (hunger, heat, light/dark, wound etc.)
+    - RPG-like events, but single ending
