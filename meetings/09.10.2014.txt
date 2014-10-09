@@ -24,3 +24,17 @@
 - Started to discuss possible game plot:
     - Survival (hunger, heat, light/dark, wound etc.)
     - RPG-like events, but single ending
+
+
+
+Next Meeting Will Be at 12.10.2014 Sunday at 01:00 PM
+-----------------------------------------------------
+For Next Meeting:
+        Ipek:
+                Work on Report
+        Ege:
+                Work on Object Models
+        Fatih:
+                Work on Use Case Models
+        Emrehan:
+                
