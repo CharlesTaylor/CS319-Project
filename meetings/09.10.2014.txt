@@ -1,4 +1,6 @@
 **First Analysis Report due Oct. 15**
+- Decided on the project name as
+        An Object Oriented Approach to Zork-Like (Text Based) Games
 - Started listing the classes required
 - Started constructing the Use Case Model
 - Sketched a graph structure for game map
