@@ -1,7 +1,19 @@
 **First Analysis Report due Oct. 15**
-- Decided on the project name as
-        An Object Oriented Approach to Zork-Like (Text Based) Games
+- Decided on the project title as:
+        "An Object Oriented Approach to Zork-Like (Text Based) Games"
 - Started listing the classes required
 - Started constructing the Use Case Model
 - Sketched a graph structure for game map
-- Discussed how "commands" will be scanned and parsed
+- Discussed how "commands" will be scanned and parsed:
+- Started to write a list of "commands":
+    - Look/search
+    - Go/walk
+    - Take
+    - Attack/kill
+    - Use: eat/drink
+    - Examine
+    - Help
+    - Login
+    - Load
+    - Save
+    - Exit
