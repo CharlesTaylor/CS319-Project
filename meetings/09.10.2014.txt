@@ -1,5 +1,5 @@
-
-
-Proje ismi
-
-	An Object Oriented Approach to Zork-Like (Text Based) Games
+**First Analysis Report due Oct. 15**
+- Started listing the classes required
+- Started constructing the Use Case Model
+- Sketched a graph structure for game map
+- Discussed how "commands" will be scanned and parsed
