@@ -1,0 +1,5 @@
+
+
+Proje ismi
+
+	An Object Oriented Approach to Zork-Like (Text Based) Games
