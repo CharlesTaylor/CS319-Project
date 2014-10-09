@@ -1,7 +1,11 @@
 **First Analysis Report due Oct. 15**
 - Decided on the project title as:
         "An Object Oriented Approach to Zork-Like (Text Based) Games"
-- Started listing the classes required
+- Started listing the classes required:
+    - Location
+    - Character
+    - Item
+    - Creature
 - Started constructing the Use Case Model
 - Sketched a graph structure for game map
 - Discussed how "commands" will be scanned and parsed:
