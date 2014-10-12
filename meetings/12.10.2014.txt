@@ -1,0 +1,41 @@
+
+
+
+
+-Shared Individual progress
+-Decided on:
+	The Game-map structure,Map-Generation
+	Data Storage
+	User Management:
+		Save-Load
+		Login
+	How to handle Character Movement
+	How Combat System works
+	
+
+	
+	
+	
+	
+	
+
+
+
+
+
+
+Next Meeting Will Be at 14.10.2014 Tuesday at 08:30 PM on Skype
+-----------------------------------------------------
+For Next Meeting:
+        Ipek:
+                Work on Sequence Diagrams
+        Ege:
+                State Diagrams
+        Fatih:
+                Work on Activity Diagrams, Glossary
+        Emrehan:
+				Work on Collaboration Diagrams
+		
+		
+		
+                
