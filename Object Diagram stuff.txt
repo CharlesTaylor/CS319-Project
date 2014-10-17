@@ -1,0 +1,77 @@
+GameSystem
+----------						/Saves/username456798123132.sav
+LoadGame()
+NewGame()
+ScoreList()
+etc..
+Parser?
+
+
+Game
+-----------------
+Character
+Map
+
+
+Map
+---
+Location[]
+String name
+
+Location
+--------
+Thing[]
+NPC[]
+Boolean[] Passable//Directions 
+
+
+Character
+---------
+String name
+String seed
+Location current
+Item[] inventory
+
+
+
+Actor |Interface|
+------------------
+go( Direction)
+atack(target,item)
+etc...
+
+
+Player : Character implements Actor
+-----
+
+
+
+NPC : Character
+---
+isHostile
+
+Thing
+-----
+
+
+Item : Thing
+------------
+isEdible
+isWeapon
+etc.
+
+
+Furniture : Thing
+-----------------
+
+
+
+
+Parser
+------
+Parser(Game)
+parse(string)
+Commands
+
+
+
