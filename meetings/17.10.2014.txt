@@ -1,0 +1,17 @@
+The Meeting supposed to be at 14.10.2014 postponed to today 17.10.2014
+
+	-Decided on Class structure of the Project
+		Added a new Class: Parser
+		Deleted the Class: Action
+	-Worked on Sequence Diagrams
+	-Worked on Class Diagrams
+
+
+
+Next Meeting Will Be at 21.10.2014 Tuesday at 08:30 PM (On-line or Off-line)
+-----------------------------------------------------
+For Next Meeting:
+	
+		All pending tasks due
+		
+On meeting parts will be collected and added to report
