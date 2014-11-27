@@ -1,0 +1,21 @@
+1.	Introduction
+1.1 Purpose of the system
+1.2 Design goals
+2.	Software architecture
+2.1 Subsystem decomposition
+2.2 Hardware/software mapping
+2.3 Persistent data management
+2.4 Access control and security
+2.5 Boundary conditions
+3.	Subsystem services
+4.	Low-level design
+4.1 Object design trade-offs
+4.2 Final object design
+4.3 Packages
+4.4 Class Interfaces
+5.	Glossary & references
+
+-----------------------------------------------
+1. , 2. , 5. Ipek
+3.Furkan Emrehan (uzunsa paylasilcak, iceriginin ogrenilmesi gerekiyor)
+4.Fatih , Ege
