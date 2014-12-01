@@ -7,10 +7,30 @@ import java.util.List;
  */
 public class Location {
 
-
+    /**
+     *Indicates if Location is passable, can be changed as Boolean[3] passable,
+     *to indicate directions from this location depending of the implementation
+     */
     boolean passable;
-    List<Thing> things;
-    public Location(){
 
+    /**
+     * List of Thing's inside this location, will be randomly generated if location is new, while loading it will be
+     * generated according to given List
+     */
+    List<Thing> things;
+
+    //Constructor for Generating Locations
+    public Location(){
+        things = randomize(null);
+    }
+    //Constructor for Loading Locations
+    public Location( boolean passable,List<Thing> things){
+        this.passable = passable;
+        this.things = things;
+    }
+
+    private List<Thing> randomize(String seed) {
+        //TODO
+        return null;
     }
 }

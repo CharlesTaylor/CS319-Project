@@ -8,4 +8,9 @@ public class Furniture implements Thing {
     public String getMessage() {
         return null;
     }
+
+    @Override
+    public String interact() {
+        return null;
+    }
 }

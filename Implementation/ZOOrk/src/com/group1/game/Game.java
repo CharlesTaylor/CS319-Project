@@ -5,13 +5,12 @@ package com.group1.game;
  */
 public class Game {
 
-
-    public Game(){
-
+    Player player;
+    public Game( Player player){
+        this.player = player;
     }
-
+    public Player getPlayer() { return player;}
     public boolean saveGame(){
-
         return false;
-    }
+    }//Move this to GameSystem
 }

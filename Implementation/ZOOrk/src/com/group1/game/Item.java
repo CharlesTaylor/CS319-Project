@@ -8,4 +8,13 @@ public class Item implements Thing{
     public String getMessage() {
         return null;
     }
+
+    @Override
+    public String interact() {
+        return null;
+    }
+
+    public String use(){
+        return  null;
+    }
 }

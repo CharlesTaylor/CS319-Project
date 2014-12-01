@@ -18,4 +18,8 @@ public class User {
     public String getSeed(){
         return seed;
     }
+
+    public boolean tryPassword(String pass){
+        return password == pass;
+    }
 }

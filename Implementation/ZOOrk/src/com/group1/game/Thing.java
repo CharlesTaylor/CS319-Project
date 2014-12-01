@@ -11,5 +11,6 @@ public interface Thing {
      * @return String messaage to be displayed
      */
     public String getMessage();
+    public String interact();
 }
 
