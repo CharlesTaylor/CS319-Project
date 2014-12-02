@@ -65,4 +65,46 @@ public class Player extends Character {
         return "Message";
     }
 
+    /**
+     * Player takes given Item if it is possible,
+     * result given with an appropriate string message
+     * Item will be added to players inventory
+     * This method designed to be called from Player object inside Game object inside Parser object
+     * game.player.take(item);
+     *
+     * @param item to take
+     * @return resulting boolean or string message depending on the implementation
+     */
+    public String take(Item item) {
+        inventory.add(item);
+        return "Message";
+    }
+
+    /**
+     * Player looks to given direction if it is possible,
+     * result given with an appropriate string message
+     * This method designed to be called from Player object inside Game object inside Parser object
+     * game.player.look(Direction.d);
+     *
+     * @param direction to look
+     * @return resulting boolean or string message depending on the implementation
+     */
+    public String look(Direction direction) {
+        return "Message";
+    }
+
+    /**
+     * Player inspects given thing if it is possible,
+     * result given with an appropriate string message
+     * This method designed to be called from Player object inside Game object inside Parser object
+     * game.player.inspect(item);
+     * Reader will understand look Thing, as inspect Thing
+     *
+     * @param thing to take
+     * @return resulting boolean or string message depending on the implementation
+     */
+    public String inspect(Thing thing) {
+
+        return "Message";
+    }
 }
