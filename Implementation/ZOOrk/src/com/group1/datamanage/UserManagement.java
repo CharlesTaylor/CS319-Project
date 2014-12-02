@@ -15,7 +15,7 @@ public class UserManagement {
         userList = getUsers();
     }
 
-    private static Map<String,User> getUsers() {
+    private Map<String,User> getUsers() {
 
 
         // TODO
@@ -26,4 +26,5 @@ public class UserManagement {
     public boolean checkIDPassword(String id,String pass){
         return userList.get(id).tryPassword(pass);
     }
+    public User getUser( String id){ return userList.get(id);}
 }

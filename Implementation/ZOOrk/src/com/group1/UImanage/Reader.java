@@ -12,29 +12,38 @@ public class Reader {
         this.game = game;
     }
 
-
-    public void analyze( String input){
+    /**
+     * analyze method, analyzes given string and calls methods from game.getCharacter()
+     *      given:
+     *          String format is like → action receiver tool
+     *                                → action direction
+     *                                etc
+     * @param input String
+     * @return returning message
+     *
+     */
+    public String analyze( String input){
         //TODO
         String[] parts = input.split( " ");
         if(parts[0].equalsIgnoreCase("go"))
         {
             switch( parts[1].charAt(0)){
                 case 'n':case 'N':
-                    game.getPlayer().go(Direction.North);
-                    break;
+                    return game.getPlayer().go(Direction.North);
+                    //break;
                 case 'e':case 'E':
-                    game.getPlayer().go(Direction.East);
-                    break;
+                    return game.getPlayer().go(Direction.East);
+                    //break;
                 case 's':case 'S':
-                    game.getPlayer().go(Direction.South);
-                    break;
+                    return game.getPlayer().go(Direction.South);
+                    //break;
                 case 'w':case 'W':
-                    game.getPlayer().go(Direction.West);
-                    break;
+                    return game.getPlayer().go(Direction.West);
+                    //break;
             }
         }
 
 
-
+        return "null";
     }
 }

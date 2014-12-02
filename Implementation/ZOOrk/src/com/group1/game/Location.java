@@ -21,7 +21,7 @@ public class Location {
 
     //Constructor for Generating Locations
     public Location(){
-        things = randomize(null);
+        things = fill(null);
     }
     //Constructor for Loading Locations
     public Location( boolean passable,List<Thing> things){
@@ -29,7 +29,7 @@ public class Location {
         this.things = things;
     }
 
-    private List<Thing> randomize(String seed) {
+    private List<Thing> fill(String seed) {
         //TODO
         return null;
     }

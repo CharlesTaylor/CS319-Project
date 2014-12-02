@@ -9,6 +9,7 @@ public class User {
     //Password to be crypted possibly
     private String password;
     private String seed;
+    private String data;
     public User(String username, String password){
         this.username = username;
         this.password = password;
@@ -18,7 +19,7 @@ public class User {
     public String getSeed(){
         return seed;
     }
-
+    public String getData(){ return data;}
     public boolean tryPassword(String pass){
         return password == pass;
     }

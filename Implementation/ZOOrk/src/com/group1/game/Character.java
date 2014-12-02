@@ -25,9 +25,10 @@ public abstract class Character {
      * Constructor for Character, Designed to work both when initialization and loading the game
      * @param name String name to assign to character
      * @param inventory List of Items Character has
-     * @param current Location of the Character
+     * @param x Location of the Character
+     * @param y Location of the Character
      */
-    public  Character( String name, List<Item> inventory, Location current){
+    public  Character( String name, List<Item> inventory, int x, int y){
         this.name = name;
 
         if(inventory ==null)    this.inventory = new ArrayList<Item>();
@@ -38,17 +39,17 @@ public abstract class Character {
 
 
     /**
-    * Character atacks to the target character according to its stats and equipment
-     * This method designed to be called from Character object inside Location object
-     * inside Map object inside Game object inside Parser object
-     * game.map.loc.char.attack(game.map.loc.char2);
-    *
-    * @param  Character to be attacked
-    * @return resulting boolean or string message depending on the implementation
-    */
-    public boolean attack( Character target){
-        return false;
-    }
+     * Player attacks given target with the given item if it is possible,
+     * result given with an appropriate string message
+     * Damage will be calculated according to users stats, and equipment
+     * This method designed to be called from Player object inside Game object inside Parser object
+     * game.player.attack(character,item);
+     *
+     * @param  character to interact
+     * @param item to attack with
+     * @return resulting boolean or string message depending on the implementation
+     */
+    public String attack(Character character,Item item){ return "Message";}
 
 
 

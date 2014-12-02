@@ -5,40 +5,48 @@ package com.group1.game;
  */
 public class Map {
 
+    private final double SIZEMULT = 2;
+    int size;
     String name;
+    Game game;
     Location[][] locations;
+    LocationFactory locationFactory;
 
     /**
-     * Returns a set backed by the specified map.  The resulting set displays
-     * the same ordering, concurrency, and performance characteristics as the
-     * backing map.  In essence, this factory method provides a {@link Set}
-     * implementation corresponding to any {@link Map} implementation.  There
-     * is no need to use this method on a {@link Map} implementation that
-     * already has a corresponding {@link Set} implementation (such as {@link
-     * HashMap} or {@link TreeMap}).
+     * Constuctor for Map class
+     * @param game, game object to access other objects
+     * @param initial int, shows the initial size of the square map
      *
-     * <p>Each method invocation on the set returned by this method results in
-     * exactly one method invocation on the backing map or its <tt>keySet</tt>
-     * view, with one exception.  The <tt>addAll</tt> method is implemented
-     * as a sequence of <tt>put</tt> invocations on the backing map.
-     *
-     * <p>The specified map must be empty at the time this method is invoked,
-     * and should not be accessed directly after this method returns.  These
-     * conditions are ensured if the map is created empty, passed directly
-     * to this method, and no reference to the map is retained, as illustrated
-     * in the following code fragment:
-     * <pre>
-     *    Set&lt;Object&gt; weakHashSet = Collections.newSetFromMap(
-     *        new WeakHashMap&lt;Object, Boolean&gt;());
-     * </pre>
-     *
-     * @param map the backing map
-     * @return the set backed by the map
-     * @throws IllegalArgumentException if <tt>map</tt> is not empty
-     * @since 1.6
      */
-    public Map(int initial){
+    public Map(Game game,int initial){
+        this.size = initial;
+        this.game = game;
+        locationFactory = new LocationFactory( game.getPlayer().seed);
         locations = new Location[initial][initial];
+    }
+
+
+
+    /**
+     * enlarge method
+     * enlarges the map with the following pattern
+     *
+     *                          **   to #**#
+     *
+     *               * to old locations
+     *               # to newly generated locations
+     * this method is called when player is near the borders of the map,
+     * it takes no parameter but it multiplies size by SIZEMULT constant of the class
+     *
+     */
+    private void enlarge(){
+        Location[][] newLocations = new Location[(int)(size*SIZEMULT)][(int)(size*SIZEMULT)];
+        for( int i = 0 ; i < size;i++)
+            for(int j = 0; j < size;j++)
+                newLocations[size+i][size+j] = locations[i][j];
+        locations = newLocations;
+        size = locations.length;
+        System.gc();
     }
 
 
