@@ -1,30 +1,58 @@
 package com.group1.datamanage;
 
+import java.io.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Created by Fatih on 30/11/2014.
  */
 public class UserManagement {
 
-    Map<String,User> userList;
+    Map<String,User> userMap;
 
 
     public UserManagement(){
-        userList = getUsers();
+        try{
+            userMap = getUsers();
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+
     }
 
-    private Map<String,User> getUsers() {
+    private Map<String,User> getUsers() throws FileNotFoundException{
 
+        Scanner readFile = new Scanner(new FileReader("Data\\users.dat"));
+        userMap = new HashMap<String, User>();
 
+        while(readFile.hasNextLine()){
+            String[] temp = readFile.nextLine().split( " ");
+            userMap.put(temp[0],new User(temp[0],temp[1]));
+        }
         // TODO
-        return null;
+        return userMap;
     }
 
 
     public boolean checkIDPassword(String id,String pass){
-        return userList.get(id).tryPassword(pass);
+        return userMap.get(id).tryPassword(pass);
     }
-    public User getUser( String id){ return userList.get(id);}
+    public User getUser( String id){ return userMap.get(id);}
+    public boolean newUser( String id, String pass, String passAgain){
+        if(pass.equals(passAgain) && !userMap.containsKey(id))
+        {
+            try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("Data\\users.dat", true)))) {
+                out.println(id + " " + Integer.toHexString(pass.hashCode()));
+                return true;
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+        return false;
+    }
 }

@@ -2,6 +2,8 @@ package com.group1.game;
 
 import java.util.List;
 
+//import static com.group1.game.Direction.*;
+
 /**
  * Created by Fatih on 27/11/2014.
  */
@@ -16,10 +18,10 @@ public class Player extends Character {
     /**
      * Constructor for Player, Designed to work both when initialization and loading the game
      *
-     * @param name      String name to assign to Player
-     * @param inventory List of Items Player has
-     * @param x         Location of the Player
-     * @param y         Location of the Player
+         * @param name      String name to assign to Player
+         * @param inventory List of Items Player has
+         * @param x         Location of the Player
+         * @param y         Location of the Player
      */
 
     public Player(String name, List<Item> inventory, int x, int y) {
@@ -36,6 +38,18 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String go(Direction direction) {
+        switch( direction){
+            case North:
+                break;
+            case East:
+                break;
+            case South:
+                break;
+            case West:
+                break;
+            default:
+                break;
+        }
         return "Message";
     }
 
@@ -76,7 +90,7 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String take(Item item) {
-        inventory.add(item);
+        super.getInventory().add(item);
         return "Message";
     }
 
@@ -106,5 +120,42 @@ public class Player extends Character {
     public String inspect(Thing thing) {
 
         return "Message";
+    }
+
+    public String getSeed() {
+        return seed;
+    }
+
+    public int getFullness() {
+
+        return fullness;
+    }
+
+    public void setFullness(int fullness) {
+        this.fullness = fullness;
+    }
+
+    public int getHeat() {
+        return heat;
+    }
+
+    public void setHeat(int heat) {
+        this.heat = heat;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getSanity() {
+        return sanity;
+    }
+
+    public void setSanity(int sanity) {
+        this.sanity = sanity;
     }
 }

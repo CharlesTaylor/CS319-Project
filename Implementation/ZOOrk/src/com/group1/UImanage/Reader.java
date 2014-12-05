@@ -7,7 +7,7 @@ import com.group1.game.Game;
  * Created by Fatih on 02/12/2014.
  */
 public class Reader {
-    Game game;
+    private Game game;
     public Reader(Game game){
         this.game = game;
     }

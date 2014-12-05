@@ -15,7 +15,7 @@ public class GameSystem {
     private UserManagement mng;
     private User user;
     private Map map;
-    public GameSystem(Player player){
+    public GameSystem(){
         mng = new UserManagement();
 
     }

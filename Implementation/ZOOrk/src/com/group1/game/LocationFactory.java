@@ -16,7 +16,7 @@ public class LocationFactory {
      *
      * @param seed a string to manipulate randomness
      */
-    public LocationFactory(String seed){
+        public LocationFactory(String seed){
         this.seed = seed;
         buffer = new ArrayDeque<Location>();
         bufferSize =5;

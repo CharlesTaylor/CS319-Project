@@ -11,15 +11,17 @@ public abstract class Character {
     /**
      * Characters name
      */
-    String name;
+    private String name;
     /**
      * Character's current Location
      */
-    Location current;
+    private Location current;
     /**
      * Characters Item List, inventory
      */
-    List<Item> inventory;
+    private List<Item> inventory;
+
+    private int hitpoint;
 
     /**
      * Constructor for Character, Designed to work both when initialization and loading the game
@@ -52,6 +54,27 @@ public abstract class Character {
     public String attack(Character character,Item item){ return "Message";}
 
 
+    public String getName() {
+        return name;
+    }
 
+    public Location getCurrent() {
+        return current;
+    }
 
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public int getHitpoint() {
+        return hitpoint;
+    }
+
+    public void setHitpoint(int hitpoint) {
+        this.hitpoint = hitpoint;
+    }
+
+    public void setCurrent(Location current) {
+        this.current = current;
+    }
 }

@@ -8,8 +8,9 @@ public interface Thing {
 
     /**
      * This methods returns the message to be send when interacted with the object itself
-     * @return String messaage to be displayed
+     * @return String message to be displayed
      */
+
     public String getMessage();
     public String interact();
 }

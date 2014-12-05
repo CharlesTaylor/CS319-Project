@@ -6,6 +6,12 @@ import java.util.List;
  * Created by Fatih on 02/12/2014.
  */
 public class HostileCharacter extends NonPlayerCharacter {
+
+
+    boolean awake;
+
+
+
     /**
      * Constructor for HostileCharacter, Designed to work both when initialization and loading the game
      * NonPlayer
@@ -19,5 +25,11 @@ public class HostileCharacter extends NonPlayerCharacter {
         super(name, inventory, x, y);
     }
 
+    public boolean isAwake() {
+        return awake;
+    }
 
+    public void setAwake(boolean awake) {
+        this.awake = awake;
+    }
 }

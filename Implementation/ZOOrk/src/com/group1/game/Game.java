@@ -26,6 +26,13 @@ public class Game {
      *@return player
     */
     public Player getPlayer(){ return player; }
+
+    /**
+     * getPlayer() method returns the player object to the caller
+     *
+     *@deprecated
+     *@return status
+     */
     public boolean saveGame(){
         return false;
     }//Move this to GameSystem
