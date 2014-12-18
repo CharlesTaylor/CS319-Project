@@ -1,0 +1,17 @@
+context Player inv:
+	items->size <= MAX_NUM_ITEMS
+
+context Player::take(item) pre:
+	not item = NULL
+
+context Player::take(item) pre:
+	player.inventory.size() < MAX_NUM_ITEMS
+
+context Player::take(item) post:
+	player.inventory.contains(item)
+
+context Player::take(item) post:
+	not player.getCurrent().things.contains(item)
+
+context Map::enlarge() post:
+	size = SIZEMULT * @pre.size
