@@ -3,6 +3,7 @@ a)Eksikler
 5.3 Architectural Patterns\\ Apply at least two architectural patterns to further structure the subsystems
 5.4 Hardware/Software Mapping \\ Describe deployment diagram
 5.3 Global Software Control
+6.3 Specifying Contracts using OCL \\ define contract for at least 5 classes (at least 30 contracts), explain each
 7 Conclusion
 
 b)Duzelticekler
