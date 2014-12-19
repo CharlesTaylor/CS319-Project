@@ -79,4 +79,11 @@ public abstract class Character {
     public void setCurrent(Location current) {
         this.current = current;
     }
+    
+    public boolean isInventoryFull(){
+        if (inventory.size() < 15)
+            return false;
+        else
+            return true;
+    }
 }
