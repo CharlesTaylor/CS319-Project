@@ -63,7 +63,7 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String interact(Thing thing) {
-        return "Message";
+        return thing.getMessage();
     }
 
     /**
@@ -76,6 +76,7 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String use(Item item) {
+        
         return "Message";
     }
 
@@ -118,7 +119,12 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String inspect(Thing thing) {
+<<<<<<< HEAD
         return "Message";
+=======
+
+        return thing.getMessage();
+>>>>>>> origin/master
     }
 
     public String getSeed() {

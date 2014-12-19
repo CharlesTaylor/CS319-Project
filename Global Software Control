@@ -1,0 +1,5 @@
+Global Software Control
+
+	The control flow that is used in this project is the event-driven control because it is the one that is most appropriate for an object-oriented programming language, such as Java. The main loop of the program is going to take an external event as input, in this case, the commands that the user enters. This is a fairly simple control flow, but our design does in fact require threads for maintaining Location instances.
+	
+	Threads will become necessary for the generation of Location instances. A queue will maintain Location instances that are generated at the beginning of the program, and at several other points in the game. In order for the user not to experience a slow gameplay, a thread will be used for the generation of Location instances, such that Location instances will be generated whenever the number of Location instances drops below a threshold. The main loop and Location generation will run on different threads.
