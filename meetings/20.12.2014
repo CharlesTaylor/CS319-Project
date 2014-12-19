@@ -1,0 +1,6 @@
+Meeting 20/12/2014
+
+- Scores will be calculated using the amount of gold and no. of kills
+- Smaller structures will reside inside greater ones: multiple chambers in a dungeon, castle and villages in the field etc.
+  - These structures will be fixed; only their locations on the greater structure will be generated randomly
+  - The descriptions of all fixed structures will voluntarily be written by EgeT.
