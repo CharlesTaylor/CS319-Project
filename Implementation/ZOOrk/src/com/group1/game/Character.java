@@ -47,11 +47,13 @@ public abstract class Character {
      * This method designed to be called from Player object inside Game object inside Parser object
      * game.player.attack(character,item);
      *
-     * @param  character to interact
+     * @param  target to interact
      * @param item to attack with
      * @return resulting boolean or string message depending on the implementation
      */
-    public String attack(Character character,Item item){ return "Message";}
+    public String attack(Character target,Item item){ 
+        return "Message";
+    }
 
 
     public String getName() {
