@@ -91,8 +91,12 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String take(Item item) {
-        super.getInventory().add(item);
-        return "Message";
+        if (!super.isInventoryFull()) {
+            super.getInventory().add(item);
+            return "Taken."
+        }
+        else
+            return "You can't take this item because your inventory is full!"
     }
 
     /**
