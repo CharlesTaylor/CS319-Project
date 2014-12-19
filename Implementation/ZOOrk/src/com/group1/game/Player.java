@@ -118,7 +118,6 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String inspect(Thing thing) {
-
         return "Message";
     }
 

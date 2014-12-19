@@ -6,21 +6,31 @@ import java.util.ArrayDeque;
  * Created by Fatih on 02/12/2014.
  */
 public class LocationFactory {
-    String seed;
-    private int bufferSize;
-    private ArrayDeque<Location> buffer;
-    /**
+	
+	private static LocationFactory instance = null;
+	 /**
      * Constructor for LocationFactory class
      * This class generates and keeps a list of locations to feed into Map
      *
      *
      * @param seed a string to manipulate randomness
      */
-        public LocationFactory(String seed){
+	protected LocationFactory(String seed){
         this.seed = seed;
         buffer = new ArrayDeque<Location>();
         bufferSize =5;
     }
+	public static LocationFactory getInstance(String seed) {
+		if(instance == null) {
+			instance = new LocationFactory(seed);
+		}
+		return instance;
+	}
+    String seed;
+    private int bufferSize;
+    private ArrayDeque<Location> buffer;
+   
+
     /**
      * setBufferSize method resets the bufferSize to change number of maps kept in the deque
      *
