@@ -49,6 +49,7 @@ There are many other chambers around you.
 (The dungeons are full of chambers, trolls, items of interest etc.)
 
 Inside random chambers:
+The walls have strange engravings on them, in a language you can't read. 
 There is a staircase leading up.
 Troll droppings.
 (item: sulfur)
@@ -67,4 +68,27 @@ You've reached the kitchen of the castle. There is a table with some food and a 
 There is a small chest. (if the key from the village is obtained, the chest may be opened, revealing some gold and a good sword, and additional stuff)
 
 The Dining Room:
+You are in the dining room. A long dining table with dirty plates on it sits in the middle of the room. A candle burns brightly on the table.
+To your ____ is the kitchen, to your ____ is the living room.
 
+The Living Room:
+You are in a chic living room. There is a carpet on the floor.
+To your ____ is the dining room.
+
+(if carpet moved)
+Moving the carpet reveals a trapdoor.
+
+(into the trapdoor)
+(The other side of the maze):
+The Maze
+(at one end of this side of the dungeons)
+A tunnel with light at the end can be seen.
+
+(end of tunnel)
+The River:
+You are outside, in front of a river that flows rapidly, making loud gushing and splashing sounds as it does.
+
+(if long plank is applied, one can cross the river):
+With great effort, you stretch the long plank across the river.
+
+You are in a forest. The chirping of birds can be heard from far.
