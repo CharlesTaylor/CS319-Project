@@ -34,5 +34,19 @@ You've reached a cliff. Below you is a shore...way below.
 (if users tries to go further towards the cliff):
 What are you crazy?
 
-The Castle (inside):
+The Dungeons (down the hole):
+Ouch! That was quite a fall. You're in a dark, moist, stinky chamber. A lantern that burns very dim sits right next to you.
+(pack of fresh batteries)
 
+(If user tries to travel without lantern):
+Warning: without a lantern you are only as good as blind, and will probably be the dinner of a ruthless troll.
+(If tries again):
+A mighty troll has crushed you with his bare hands. You are dead. GAME OVER.
+
+(After stronger light)
+There are many other chambers around you. 
+
+(The dungeons are full of chambers, trolls, items of interest etc.)
+
+Inside a random chamber:
+There is a staircase
