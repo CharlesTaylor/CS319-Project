@@ -72,11 +72,11 @@ You are in the dining room. A long dining table with dirty plates on it sits in 
 To your ____ is the kitchen, to your ____ is the living room.
 
 The Living Room:
-You are in a chic living room. There is a carpet on the floor.
+You are in a chic living room. There is a rug on the floor.
 To your ____ is the dining room.
 
-(if carpet moved)
-Moving the carpet reveals a trapdoor.
+(if rug moved)
+Moving the rug reveals a trapdoor.
 
 (into the trapdoor)
 (The other side of the maze):
