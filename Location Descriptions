@@ -7,16 +7,19 @@ To your ____ is a castle. A path seems to lead ____.
 Leaflet Message:
 Welcome to zOOrk! This a remake of the classic 1977 game of Zork. A true adventure awaits thee in the evil underworld kingdom where you must fight to stay alive! Collect as many coins as you can and slay as many enemies as possible in order to earn a high score. Good luck!
 
-The Castle (outside 1)
+Boundaries:
+You are in a forest.
+
+The Castle (outside 1):
 There is an old rusty gate. Looks immovable.
 
-The Castle (outside 2)
+The Castle (outside 2):
 A backdoor!
 
-The Castle (outside 3)
+The Castle (outside 3):
 There is a huge hole in the ground. It might have been dug by the prisoners of the castle.
 
-The Castle (outside 4)
+The Castle (outside 4):
 There is a brick wall. Impossible to climb.
 
 The Path to the Village:
@@ -24,4 +27,12 @@ Some lights can be seen straight ahead.
 
 The Village:
 You've reached an old village. Nobody seems to inhabit it anymore. It was perhaps the village where the young warriors were brought up to fight the evil of the underworld. Seems as if part of the village was destroyed during an enemy attack. There are, however, several cottages still intact.
+(some precious items must show up at the village, either inside or outside the cottages. precious items may include a dagger, some gold, a key for something, bronze medal etc.)
+
+The Cliff:
+You've reached a cliff. Below you is a shore...way below.
+(if users tries to go further towards the cliff):
+What are you crazy?
+
+The Castle (inside):
 
