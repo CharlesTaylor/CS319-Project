@@ -8,24 +8,29 @@ import java.util.List;
  * Created by Fatih on 27/11/2014.
  */
 public class Player extends Character {
-    String seed;
-    int fullness;
-    int heat;
-    int strength;
-    int sanity;
+    private String seed;
+    private int fullness;
+    private int heat;
+    private int strength;
+    private int sanity;
+    private final int MAX_FULLNESS = 20;
+    private boolean alive = true;
+    int x,y;
 
 
     /**
      * Constructor for Player, Designed to work both when initialization and loading the game
      *
-         * @param name      String name to assign to Player
-         * @param inventory List of Items Player has
-         * @param x         Location of the Player
-         * @param y         Location of the Player
+     * @param name      String name to assign to Player
+     * @param inventory List of Items Player has
+     * @param x         Location of the Player
+     * @param y         Location of the Player
      */
 
     public Player(String name, List<Item> inventory, int x, int y) {
-        super(name, inventory, x, y);
+        super(name);
+        this.x=x;
+        this.y=y;
     }
 
     /**
@@ -38,19 +43,14 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String go(Direction direction) {
-        switch( direction){
-            case North:
-                break;
-            case East:
-                break;
-            case South:
-                break;
-            case West:
-                break;
-            default:
-                break;
+        String message = "";
+        if (getCurrent().isPassable(direction)) {
+            setCurrent(getCurrent().getAdjacent(direction));
+            message = getCurrent().getMessage();
         }
-        return "Message";
+        else
+            message = "You can't go that way.";
+        return message;
     }
 
     /**
@@ -76,7 +76,18 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String use(Item item) {
-        return "Message";
+        int foodVal = item.getFoodValue();
+        String message = "";
+        if (foodVal > 0){
+            fullness += foodVal;
+            getInventory().remove(item);
+            if (fullness >= MAX_FULLNESS)
+                fullness = MAX_FULLNESS;
+            message = "Thank you. I really needed that.";
+        }
+        else
+            message = "Are you serious? Me... Eating.. that " + item.getName();
+        return message;
     }
 
     /**
@@ -90,8 +101,12 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String take(Item item) {
-        super.getInventory().add(item);
-        return "Message";
+        if (super.getInventory().size() < 15) {
+            super.getInventory().add(item);
+            return "Taken.";
+        }
+        else
+            return "Cannot take item because your inventory is full.";
     }
 
     /**
@@ -104,7 +119,7 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String look(Direction direction) {
-        return "Message";
+        return getCurrent().getAdjacent(direction).getMessage();
     }
 
     /**
@@ -118,7 +133,7 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String inspect(Thing thing) {
-        return "Message";
+        return thing.getMessage();
     }
 
     public String getSeed() {
@@ -128,6 +143,21 @@ public class Player extends Character {
     public int getFullness() {
 
         return fullness;
+    }
+
+    private String update() {
+        // TODO
+        String message = null;
+        fullness--;
+        if (fullness <= 0) {
+            alive = false;
+            message = "You are dead! GAME OVER";
+        }
+        else if (fullness < 5)
+            message = "Your health is running dangerously low. If you don't eat something you will die.";
+        else
+            message = "";
+        return message;
     }
 
     public void setFullness(int fullness) {

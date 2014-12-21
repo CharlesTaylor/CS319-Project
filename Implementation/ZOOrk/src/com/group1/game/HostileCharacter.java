@@ -9,7 +9,7 @@ public class HostileCharacter extends NonPlayerCharacter {
 
 
     boolean awake;
-
+    Item weapon;
 
 
     /**
@@ -17,12 +17,11 @@ public class HostileCharacter extends NonPlayerCharacter {
      * NonPlayer
      *
      * @param name      String name to assign to character
-     * @param inventory List of Items Character has
-     * @param x location of the HostileCharacter
-     * @param y location of the HostileCharacter
      */
-    public HostileCharacter(String name, List<Item> inventory, int x, int y) {
-        super(name, inventory, x, y);
+
+    public HostileCharacter(String name, Item weapon) {
+        super(name);
+        this.weapon = weapon;
     }
 
     public boolean isAwake() {

@@ -21,11 +21,13 @@ public class Map {
     public Map(Game game,int initial){
         this.size = initial;
         this.game = game;
-        locationFactory = new LocationFactory( game.getPlayer().seed);
+        locationFactory = new LocationFactory( game);
         locations = new Location[initial][initial];
     }
 
-
+    public Location getLocation( int x,int y){
+        return locations[x][y];
+    }
 
     /**
      * enlarge method

@@ -26,15 +26,10 @@ public abstract class Character {
     /**
      * Constructor for Character, Designed to work both when initialization and loading the game
      * @param name String name to assign to character
-     * @param inventory List of Items Character has
-     * @param x Location of the Character
-     * @param y Location of the Character
      */
-    public  Character( String name, List<Item> inventory, int x, int y){
+    public  Character( String name){
         this.name = name;
 
-        if(inventory ==null)    this.inventory = new ArrayList<Item>();
-        else    this.inventory = inventory;
 
         this.current = current;
     }

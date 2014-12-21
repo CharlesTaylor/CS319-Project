@@ -43,6 +43,6 @@ public class GameSystem {
 	}else{
 		//Generate Game According to data
 	}	
-	startGame(player,game);
+		startGame(player,game);
 	}
 }

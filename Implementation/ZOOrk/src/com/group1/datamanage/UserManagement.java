@@ -52,7 +52,8 @@ public class UserManagement {
     public boolean newUser( String id, String pass, String passAgain){
         if(pass.equals(passAgain) && !userMap.containsKey(id))
         {
-            try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("Data\\users.dat", true)))) {
+            try {
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("Data\\users.dat", true)));
                 out.println(id + " " + Integer.toHexString(pass.hashCode()));
                 return true;
             }catch (IOException e) {

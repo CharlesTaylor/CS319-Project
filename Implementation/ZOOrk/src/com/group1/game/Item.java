@@ -1,9 +1,11 @@
 package com.group1.game;
 
+import java.io.Serializable;
+
 /**
  * Created by Fatih on 27/11/2014.
  */
-public class Item implements Thing{
+public class Item implements Thing,Serializable{
     private String name;
     private int damage;//if this is 0 it is not a weapon
     private int foodValue;//if this is 0 it is not a food
@@ -23,10 +25,6 @@ public class Item implements Thing{
     @Override
     public String interact() {
         return null;
-    }
-
-    public String use(){
-        return  null;
     }
 
     public String getName() {

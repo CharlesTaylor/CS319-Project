@@ -7,6 +7,7 @@ import com.group1.game.Location;
 import com.group1.game.Thing;
 import com.group1.game.Item;
 import com.group1.game.Character;
+
 /**
 * Created by Fatih on 02/12/2014.
 */
@@ -40,7 +41,7 @@ public class Reader
 	public String analyze( String input)
 	{
 		//TODO
-		Location L = new Location();
+
 		Character character = null;
 		String[] parts = input.split( " ");
 		if(parts[0].equalsIgnoreCase("go"))
@@ -74,7 +75,7 @@ public class Reader
 		{
 			if (parts.length > 1)
 			{
-				for(Thing t : L.getThings())
+				for(Thing t : game.getPlayer().getCurrent().getThings())
 				{
 					if (t.getName().equalsIgnoreCase(parts[1]))
 					{
@@ -153,7 +154,7 @@ public class Reader
 		{
 			if (parts.length > 1)
 			{
-				for(Thing t : L.getThings())
+				for(Thing t : game.getPlayer().getCurrent().getThings())
 				{
 					if (t.getName().equalsIgnoreCase(parts[1]))
 					{
@@ -172,7 +173,7 @@ public class Reader
 	{
 
 		Character character = null;
-		Location L = new Location();
+
 		Scanner scan = new Scanner(System.in);
 		if(lastCommand.equalsIgnoreCase("go"))
 		{
@@ -199,9 +200,9 @@ public class Reader
 		}
 		if(lastCommand.equalsIgnoreCase("interact"))
 		{
-			System.out.println("interact what?");
+			System.out.println("interact with what?");
 			String input = scan.nextLine();
-			for(Thing t : L.getThings())
+			for(Thing t : game.getPlayer().getCurrent().getThings())
 			{
 				if (t.getName().equalsIgnoreCase(input))
 				{
@@ -263,7 +264,7 @@ public class Reader
 		{
 			System.out.println("inspect what?");
 			String input = scan.nextLine();
-			for(Thing t : L.getThings())
+			for(Thing t : game.getPlayer().getCurrent().getThings())
 			{
 				if (t.getName().equalsIgnoreCase(input))
 				{
