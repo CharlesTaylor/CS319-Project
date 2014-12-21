@@ -47,13 +47,11 @@ public abstract class Character {
      * This method designed to be called from Player object inside Game object inside Parser object
      * game.player.attack(character,item);
      *
-     * @param  target to interact
+     * @param  character to interact
      * @param item to attack with
      * @return resulting boolean or string message depending on the implementation
      */
-    public String attack(Character target,Item item){ 
-        return "Message";
-    }
+    public String attack(Character character,Item item){ return "Message";}
 
 
     public String getName() {
@@ -78,12 +76,5 @@ public abstract class Character {
 
     public void setCurrent(Location current) {
         this.current = current;
-    }
-    
-    public boolean isInventoryFull(){
-        if (inventory.size() < 15)
-            return false;
-        else
-            return true;
     }
 }

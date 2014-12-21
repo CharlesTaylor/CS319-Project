@@ -63,7 +63,7 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String interact(Thing thing) {
-        return thing.getMessage();
+        return "Message";
     }
 
     /**
@@ -76,7 +76,6 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String use(Item item) {
-        
         return "Message";
     }
 
@@ -91,12 +90,8 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String take(Item item) {
-        if (!super.isInventoryFull()) {
-            super.getInventory().add(item);
-            return "Taken."
-        }
-        else
-            return "You can't take this item because your inventory is full!"
+        super.getInventory().add(item);
+        return "Message";
     }
 
     /**
@@ -123,12 +118,7 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String inspect(Thing thing) {
-<<<<<<< HEAD
         return "Message";
-=======
-
-        return thing.getMessage();
->>>>>>> origin/master
     }
 
     public String getSeed() {
