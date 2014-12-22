@@ -6,28 +6,32 @@ import java.io.Serializable;
  * Created by Fatih on 27/11/2014.
  */
 public class Item implements Thing{
-    private String name;
+    private String name, message;
     private int damage;//if this is 0 it is not a weapon
     private int foodValue;//if this is 0 it is not a food
 
 
 
-    public Item( String name,int damage,int foodValue){
+    public Item( String name,int damage,int foodValue, String message){
         this.name = name;
         this.damage = damage;
         this.foodValue = foodValue;
+        this.message = message;
     }
     @Override
-    public String getMessage() {
-        return null;
+    public String getMessage()
+    {
+        return message; // returns message about usage of the item
     }
 
     @Override
-    public String interact() {
+    public String interact()
+    {
         return null;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 

@@ -5,13 +5,14 @@ package com.group1.game;
  */
 public class Furniture implements Thing {
 
-    String name;
-    public Furniture( String name){
+    String name, message;
+    public Furniture( String name, String message){
         this.name = name;
+        this.message = message;
     }
     @Override
     public String getMessage() {
-        return null;
+        return message;
     }
 
     @Override
