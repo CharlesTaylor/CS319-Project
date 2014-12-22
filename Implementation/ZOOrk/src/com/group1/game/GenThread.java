@@ -7,14 +7,17 @@ import java.util.*;
  */
 public class GenThread extends Thread {
 
+    final static int[] randRates  = new int[]{100,75,50,25};
     int numOfLocations;
     Random randomize;
     Game game;
     int randrate;
+    Location.LocType type;
     List listofLocs;
-    public GenThread(Game game,int numOfLocations,int randrate, Random randomize){
+    public GenThread(Game game,int numOfLocations,Location.LocType type, Random randomize){
         this.game = game;
-        this.randrate = randrate;
+        this.randrate = randRates[type.ordinal()];
+        this.type = type;
         this.numOfLocations = numOfLocations;
         this.randomize = randomize;
         listofLocs = new ArrayList(numOfLocations);
@@ -34,7 +37,8 @@ public class GenThread extends Thread {
                     characters.add(c);
                 }
             }
-            //listofLocs.add( new Location(passables,things,characters));
+            List<String> typeDesc = game.getAllDescriptions()[type.ordinal()];
+            listofLocs.add( new Location(game.getMap(),passables,things,characters,typeDesc.get(randomize.nextInt()%typeDesc.size())));
         }
     }
     public List<Location> getLocs(){

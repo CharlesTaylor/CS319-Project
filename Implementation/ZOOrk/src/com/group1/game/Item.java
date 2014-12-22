@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Fatih on 27/11/2014.
  */
-public class Item implements Thing,Serializable{
+public class Item implements Thing{
     private String name;
     private int damage;//if this is 0 it is not a weapon
     private int foodValue;//if this is 0 it is not a food

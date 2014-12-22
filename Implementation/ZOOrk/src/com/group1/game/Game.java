@@ -4,6 +4,8 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,6 +16,14 @@ public class Game {
 
     private Player player;
 
+    public List<String>[] getAllDescriptions() {
+        return allDescriptions;
+    }
+
+    public void setAllDescriptions(List<String>[] allDescriptions) {
+        this.allDescriptions = allDescriptions;
+    }
+
     /**
      * Constructor for Game
      * This class connects separate pieces of the program
@@ -22,9 +32,10 @@ public class Game {
      *
      * @param player      String name to assign to character
      */
-    private List<String> allDescriptions;
+    private List<String>[] allDescriptions;//Plains,Castle,Dungeon,Village
     private List<Thing> allThings;
     private List<Character> allCharacters;
+    private Map map;
     public Game( Player player){
         this.player = player;
     }
@@ -37,6 +48,33 @@ public class Game {
         XStream xstream = new XStream(new StaxDriver());
         allThings =(List) xstream.fromXML(new File("Data//things.xml"));
         allCharacters = (List) xstream.fromXML(new File("Data//characters.xml"));
+        Scanner read = null;
+        try {
+            read = new Scanner( new File("Data//descriptions.dat"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        allDescriptions = new List[4];
+        for(int i = 0; i < allDescriptions.length;i++){
+            allDescriptions[i] = new ArrayList<String>();
+            while(read.hasNextLine()){
+                String temp = read.nextLine();
+                System.out.println(temp);
+                if(temp.equals("$"))
+                    break;
+                allDescriptions[i].add(temp);
+
+            }
+        }
+
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
     }
 
     public List<Character> getAllCharacters() {
