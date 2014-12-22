@@ -31,7 +31,7 @@ You've reached an old village. Nobody seems to inhabit it anymore. It was perhap
 
 The Cliff:
 You've reached a cliff. Below you is a shore...way below.
-(if users tries to go further towards the cliff):
+(if user tries to go further towards the cliff):
 What are you crazy?
 
 The Dungeons (down the hole):
@@ -39,7 +39,7 @@ Ouch! That was quite a fall. You're in a dark, moist, stinky chamber. A lantern 
 (pack of fresh batteries)
 
 (If user tries to travel without lantern):
-Warning: without a lantern you are only as good as blind, and will probably be the dinner of a ruthless troll.
+Warning: without a lantern you are only as good as blind, and are likely to be the dinner of a ruthless troll.
 (If tries again):
 A mighty troll has crushed you with his bare hands. You are dead. GAME OVER.
 
@@ -96,8 +96,11 @@ You are in a forest. The chirping of birds can be heard from far.
 
 PLAINS.txt (in progress)
 
-You are in a vast field of green.
-You are at a lakeside.
-You are in a forest. The chirping of birds can be heard from far.
+You are in a vast field of green. A rather soft breeze blows at your direction, carrying with it a wicked scent of sulfur. It must be coming from close by.
+You are standing near a lake. The water seems way too still to be sanitary.
+You are in a forest. There are trees in every direction around you. The chirping of birds can be heard loud and clear.
 You are near a canyon. The view is breathtaking.
-You are in a swamp.
+You are in a swamp. If you go any further in this direction you are sure to be sucked into an abyss of gooey nightmare.
+$
+CASTLE.txt
+
