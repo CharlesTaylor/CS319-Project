@@ -18,5 +18,10 @@ public class Furniture implements Thing {
     @Override
     public String getName() {
         return name;
-    }}
+    }
 
+    @Override
+    public String interact() {
+        return null;
+    }
+}

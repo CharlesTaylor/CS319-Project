@@ -1,9 +1,12 @@
 package com.group1.game;
+import com.group1.IOmanage.GameReader;
 import com.group1.IOmanage.Reader;
 import com.group1.datamanage.User;
 import com.group1.datamanage.UserManagement;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
+import java.util.Scanner;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +22,7 @@ public class GameSystem {
 	private static GameSystem instance = null;
 	protected GameSystem(){
 		mng = UserManagement.getInstance();
+		read = new Scanner(System.in);
 	}
 	public static GameSystem getInstance(){
 		if( instance == null){
@@ -31,12 +35,19 @@ public class GameSystem {
 	private Reader reader;
 	private UserManagement mng;
 	private User user;
+
+	public UserManagement getMng() {
+		return mng;
+	}
+
 	private Map map;
+	private Scanner read;
 	
 	private void startGame(Player player,Game game){
 		this.player = player;
 		game = new Game( player);
-		reader = Reader.getInstance(game);
+		reader = GameReader.getInstance(game);
+		run();
 	}
 	public void login(String name, String pass){
 		if(mng.checkIDPassword(name,pass)){
@@ -84,7 +95,13 @@ public class GameSystem {
 			game = (Game) xstream.fromXML(new File("Data//Users//SaveGames//" + user.getUsername() +".xml"));
 			player = game.getPlayer();
 		}
-			startGame(player,game);
+		startGame(player,game);
+
+	}
+
+	public void run(){
+		reader.analyze( read.nextLine());
+
 
 	}
 }

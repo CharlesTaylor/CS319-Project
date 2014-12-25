@@ -24,6 +24,12 @@ public class Item implements Thing{
         return message; // returns message about usage of the item
     }
 
+    @Override
+    public String interact()
+    {
+        return null;
+    }
+
     public String getName()
     {
         return name;

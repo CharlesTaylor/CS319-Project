@@ -13,5 +13,6 @@ public interface Thing {
 
     public String getMessage();
     public String getName();
+    public String interact();
 }
 

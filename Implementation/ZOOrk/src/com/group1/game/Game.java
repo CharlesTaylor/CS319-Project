@@ -81,9 +81,7 @@ public class Game {
         return allCharacters;
     }
 
-    public void setAllCharacters(List<Character> allCharacters) {
-        this.allCharacters = allCharacters;
-    }
+
 
     /**
      * getPlayer() method returns the player object to the caller
