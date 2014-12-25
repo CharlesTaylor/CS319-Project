@@ -69,7 +69,8 @@ context Game::setAll() pre:
 context Game::setAll() pre:
 	allDescriptions.isEmpty() = true
 
-
+context Reader::analyze(input) pre:
+	not input = NULL
 	
 	
 
