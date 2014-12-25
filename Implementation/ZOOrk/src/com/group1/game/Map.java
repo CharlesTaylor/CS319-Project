@@ -5,6 +5,7 @@ package com.group1.game;
  */
 public class Map {
 
+    public static final int SIZE = 64;
     private final double SIZEMULT = 2;
     int size;
     String name;

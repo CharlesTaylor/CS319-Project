@@ -2,6 +2,13 @@ package com.group1.game;
 import com.group1.IOmanage.Reader;
 import com.group1.datamanage.User;
 import com.group1.datamanage.UserManagement;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 /**
@@ -32,17 +39,35 @@ public class GameSystem {
 	}
 	public void login(String name, String pass){
 		if(mng.checkIDPassword(name,pass)){
-			user	 = mng.getUser(name);
+			user = mng.getUser(name);
 		}
 		generateGame( user);
 	}
+
+	public void saveGame(){
+		XStream xstream = new XStream(new StaxDriver());
+		try {
+			xstream.toXML(game, new FileWriter( new File("Data//Users//SaveGames//" + user.getUsername() +".xml")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 	private void generateGame(User user) {
-	String 	data = user.getData();
-	if( data.isEmpty()){
-    	//Generate Game According to Default Settings
-	}else{
-		//Generate Game According to data
-	}	
-		startGame(player,game);
+		XStream xstream = new XStream(new StaxDriver());
+		String 	data = user.getData();
+		if( data.isEmpty()){
+			//Generate Game According to Default Settings
+			player = new Player(user.getUsername(),new ArrayList<Item>(),Map.SIZE/2,Map.SIZE/2);
+			game = new Game( player);
+			map = new Map( game,Map.SIZE);
+		}else{
+			//Generate Game According to data
+
+			game = (Game) xstream.fromXML(new File("Data//Users//SaveGames//" + user.getUsername() +".xml"));
+			player = game.getPlayer();
+		}
+			startGame(player,game);
+
 	}
 }

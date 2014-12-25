@@ -44,12 +44,12 @@ public class Location {
         this.description = description;
     }
 
-    public Location( boolean []passable,List<Thing> things, Character character){
-        this.passable = passable;
-        this.things = things;
-        characters = new ArrayList<Character>();
-        characters.add(character);
-    }
+//    public Location( boolean []passable,List<Thing> things, Character character){
+//        this.passable = passable;
+//        this.things = things;
+//        characters = new ArrayList<Character>();
+//        characters.add(character);
+//    }
 
 
     public void setXY(int x,int y){

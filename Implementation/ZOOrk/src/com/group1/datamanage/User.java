@@ -6,6 +6,11 @@ package com.group1.datamanage;
 public class User {
 
     private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
     //Password to be crypted possibly
     private String password;
     private String seed;
