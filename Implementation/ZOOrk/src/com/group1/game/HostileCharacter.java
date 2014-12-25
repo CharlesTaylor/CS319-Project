@@ -24,7 +24,7 @@ public class HostileCharacter extends NonPlayerCharacter {
         this.weapon = weapon;
     }
 
-    public boolean isAwake() {
+    public boolean getAwake() {
         return awake;
     }
 

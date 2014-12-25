@@ -76,28 +76,30 @@ public class Location {
         build.append(description);
         if(things.size() !=0)
         {
-            build.append( " There are");
+            build.append( "There is ");
         }
-        for( Thing t : things){
-            build.append(t.getMessage());
-            build.append( ", ");
+            for( Thing t : things){
+                build.append("a ");
+                build.append(t.getMessage());
+                build.append( ", ");
         }
         if(things.size() !=0)
         {
-            build.append( " in this Location. ");
+            build.append( " at this location.");
         }
 
         if(characters.size() !=0)
         {
-            build.append( "Also there are");
+            build.append( "Also there is ");
         }
         for( Character c : characters){
+            build.append("a ");
             build.append(c.getName());
             build.append( ", ");
         }
         if(things.size() !=0)
         {
-            build.append( "in this Location. ");
+            build.append( "at this location.");
         }
         return build.toString();
     }

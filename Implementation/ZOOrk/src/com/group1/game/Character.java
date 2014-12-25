@@ -26,6 +26,8 @@ public abstract class Character {
 
     private int hitpoint;
 
+    private int strength;
+
     /**
      * Constructor for Character, Designed to work both when initialization and loading the game
      * @param name String name to assign to character
@@ -49,6 +51,7 @@ public abstract class Character {
      * @param item to attack with
      * @return resulting boolean or string message depending on the implementation
      */
+<<<<<<< HEAD
     public String attack(Character character,Item item) {
         StringBuilder build = new StringBuilder(150);
         character.setHitpoint(character.getHitpoint() - character.getStrength() * item.getDamage());
@@ -57,6 +60,13 @@ public abstract class Character {
         build.append(" : ");
         build.append(character.getStrength());
         return build.toString();
+=======
+    public String attack(Character character,Item item){
+        character.setHitpoint( character.getHitpoint() - strength * item.getDamage());
+        return "Message";
+    }
+
+>>>>>>> origin/master
 
     }
     public String getName() {

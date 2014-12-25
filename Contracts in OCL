@@ -15,3 +15,47 @@ context Player::take(item) post:
 
 context Map::enlarge() post:
 	size = SIZEMULT * @pre.size
+
+context Location :: setXY(x,y) post:
+	self.x = x
+	self.y = y
+
+context Location :: getAdjacent(d) pre:
+	d->passable = true
+	
+context Location :: getAdjacent(d) post:
+	x = @pre.x + 1
+	y = @pre.y + 1
+	
+context Item inv:
+	getDamage() >= 0
+	
+context Item inv:
+	getFoodValue() >= 0
+	
+context Character :: attack(c, i) pre:
+	c-> hitPoint >= c->strength * i->damage
+
+context Character :: attack(c,i) post:
+	c-> hitPoint = @pre.(c->hitPoint - c->strength*i->damage)
+
+context Character :: setStrength(s) pre:
+	s >= 0
+
+context Character :: setStrength(s) post:
+	self.s = s
+	
+context Character :: setHitpoint(h) pre:
+	h >= 0
+	
+context Character :: setHitpoint(h) post:
+	self.h = h
+
+
+
+	
+
+
+	
+	
+
