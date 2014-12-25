@@ -78,7 +78,7 @@ public class Player extends Character {
      */
     public String use(Item item) {
         int foodVal = item.getFoodValue();
-        String message = "";
+        String message = null;
         if (foodVal > 0){
             fullness += foodVal;
             getInventory().remove(item);
