@@ -13,6 +13,9 @@ context Player::take(item) post:
 context Player::take(item) post:
 	not player.getCurrent().things.contains(item)
 
+context Player::drop(item) pre:
+	player.inventory.size() > 0
+
 context Map::enlarge() post:
 	size = SIZEMULT * @pre.size
 
@@ -51,7 +54,11 @@ context Character :: setHitpoint(h) pre:
 context Character :: setHitpoint(h) post:
 	self.h = h
 
+context Furniture inv:
+	not getName() = NULL
 
+context Furniture inv:
+	not getMessage() = NULL
 
 	
 
