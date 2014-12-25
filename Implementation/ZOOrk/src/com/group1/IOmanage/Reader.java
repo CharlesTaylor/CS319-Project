@@ -21,9 +21,8 @@ public class Reader
 	public static Reader getInstance(Game game) 
 	{
 		if(instance == null) 
-		{
-        	instance = new Reader(game);
-        }
+        		instance = new Reader(game);
+		
 		return instance;
 	}
 	private Game game;
