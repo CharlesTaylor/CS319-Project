@@ -1,76 +1,161 @@
 context Player inv:
 	items->size <= MAX_NUM_ITEMS
+	
+//the maximum number  of items must less than or equal to the limit(MAX_NUM_ITEMS)
 
 context Player::take(item) pre:
 	not item = NULL
+//player can take item only if it is not null
 
 context Player::take(item) pre:
 	player.inventory.size() < MAX_NUM_ITEMS
+	
+//player cannot have more items than limit(MAX_NUM_ITEMS)
 
 context Player::take(item) post:
 	player.inventory.contains(item)
+	
+//after item is taken it should be included in player's inventory
 
 context Player::take(item) post:
 	not player.getCurrent().things.contains(item)
+	
+//item should be disappear in its location after item is taken by player
 
 context Player::drop(item) pre:
 	player.inventory.size() > 0
+	
+//player can drop its own items only if its inventory size is positive
 
 context Map::enlarge() post:
 	size = SIZEMULT * @pre.size
+	
+//after map is enlarged new size of the map should be equal to size multiplication times current size
 
 context Location :: setXY(x,y) post:
 	self.x = x
+
+//once set methods is called current x is set as x that comes from parameter of method
+context Location :: setXY(x,y) post:
 	self.y = y
+//once set methods is called current y is set as y that comes from parameter of method
 
 context Location :: getAdjacent(d) pre:
 	d->passable = true
 	
+//To get adjecent location in a direction this direction should be passable
+	
 context Location :: getAdjacent(d) post:
 	x = @pre.x + 1
+	
+//getting adjacent location means enlarging map by adding 1 to x coordinate and,
+
+context Location :: getAdjacent(d) post:
 	y = @pre.y + 1
+	
+//adding 1 to y coordinate
 	
 context Item inv:
 	getDamage() >= 0
 	
+// Damage of an item should be positive
+	
 context Item inv:
 	getFoodValue() >= 0
 	
+// food value should be positive
+
+
+context Item inv:
+	not getName() = NULL
+	
+//names of items should be initialized so it cannot be null
+
+context Item inv:
+	not getMessage() = NULL
+	
+//meassages of items should be initialized so it cannot be null
+
 context Character :: attack(c, i) pre:
 	c-> hitPoint >= c->strength * i->damage
 
+//to be attacked the hitPoint of the character should be more than its strength times damage of item
+
 context Character :: attack(c,i) post:
 	c-> hitPoint = @pre.(c->hitPoint - c->strength*i->damage)
+	
+//once a character is attacked its hitPoint decreases with the amount of its strength times damage of the item
 
 context Character :: setStrength(s) pre:
 	s >= 0
 
+// strength of a character should be a positive value
+
 context Character :: setStrength(s) post:
 	self.s = s
+	
+//once set methods is called for strength current strength is set as strength that comes from parameter of method
 	
 context Character :: setHitpoint(h) pre:
 	h >= 0
 	
+//hitPoint of a character must be  positive value
+
 context Character :: setHitpoint(h) post:
 	self.h = h
+	
+//once set methods is called for hitpoint current hitpoint is set as hitpoint that comes from parameter of the method
 
 context Furniture inv:
 	not getName() = NULL
+//name of a furniture should be initialized it cannot be null
 
 context Furniture inv:
 	not getMessage() = NULL
 
+//name of a furniture should be initialized it cannot be null	
+	
 context Game::setAll() pre:
 	allThings.isEmpty() = true
+	
+//to set things list of things should be empty
 
 context Game::setAll() pre:
 	allCharacters.isEmpty() = true
+	
+//to set characters list of characters should be empty
 
 context Game::setAll() pre:
 	allDescriptions.isEmpty() = true
+	
+//to set descriptions list of descriptions should be empty
 
 context Reader::analyze(input) pre:
 	not input = NULL
 	
+// to analyze an input, input should not be empty
 	
+context HostileCharacter :: setAwake(a) post:
+	self.a = a
+	
+//once set methods is called for awake (boolean), the return value of awake should be set as parameter
+
+context GenThread :: getLocs() pre:
+	not listofLocks.isEmpty()
+	
+//getLocs method can be called only if listofLocks is not empty
+	
+context Usermanagement :: checkIDPassword(id, pass) pre:
+	not id=NULL
+//to check id it should not be null
+	
+context Usermanagement :: checkIDPassword(id, pass) pre:
+	not pass=NULL
+
+//to password it should not be null
+
+
+	
+	
+
 
