@@ -14,6 +14,7 @@ public class Player extends Character {
 
     private int sanity;
     private final int MAX_FULLNESS = 20;
+    private final int MAX_NUM_ITEMS = 15;
     private boolean alive = true;
     int x,y;
 
@@ -101,12 +102,33 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String take(Item item) {
-        if (super.getInventory().size() < 15) {
+        if (super.getInventory().size() < MAX_NUM_ITEMS) {
             super.getInventory().add(item);
             return "Taken.";
         }
         else
             return "Cannot take item because your inventory is full.";
+    }
+    
+    /**
+     * Player drops the given item if possible,
+     * result is given with an appropriate string 
+     * message. Item will be removed from the inventory.
+     * This method designed to be called from Player object inside Game object inside Parser object
+     * game.player.take(item);
+     *
+     * @param item to drop
+     * * @return resulting boolean or string message depending on the implementation
+     */
+    public String drop(Item item) {
+        if (super.getInventory().isEmpty())
+            return "Nothing to be dropped.";
+        else {
+            if (super.getInventory().remove(item))
+                return "Dropped " + item.getName();
+            else
+                return "You don't have the " + item.getName();
+        }
     }
 
     /**
