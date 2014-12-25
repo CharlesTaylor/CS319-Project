@@ -118,7 +118,7 @@ public class Player extends Character {
      * game.player.take(item);
      *
      * @param item to drop
-     * * @return resulting boolean or string message depending on the implementation
+     * @return resulting boolean or string message depending on the implementation
      */
     public String drop(Item item) {
         if (super.getInventory().isEmpty())
