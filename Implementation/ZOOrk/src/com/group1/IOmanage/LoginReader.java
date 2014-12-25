@@ -23,15 +23,10 @@ public class LoginReader implements Reader {
     private GameSystem gameSys;
 
     @Override
-    public String analyze(String input) {
-
-        String[] parts = input.split( " ");
-        if(parts[0].equalsIgnoreCase("Login")) {
-            gameSys.login(parts[1],parts[2]);
+    public String analyze(int input) {
+        switch (input){
+            case 1:
+                return "Choose a username\n";
         }
-
-
-
-        return null;
     }
 }
