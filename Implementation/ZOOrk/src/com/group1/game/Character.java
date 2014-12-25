@@ -3,16 +3,19 @@ package com.group1.game;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Created by Fatih on 27/11/2014.
  *
  */
 public abstract class Character {
+    private int strength;
     /**
      * Characters name
      */
     private String name;
     /**
+     *
      * Character's current Location
      */
     private Location current;
@@ -46,12 +49,29 @@ public abstract class Character {
      * @param item to attack with
      * @return resulting boolean or string message depending on the implementation
      */
-    public String attack(Character character,Item item){ return "Message";}
+    public String attack(Character character,Item item) {
+        StringBuilder build = new StringBuilder(150);
+        character.setHitpoint(character.getHitpoint() - character.getStrength() * item.getDamage());
+        build.append(" Remaining strength of the ");
+        build.append(character.getName());
+        build.append(" : ");
+        build.append(character.getStrength());
+        return build.toString();
 
-
+    }
     public String getName() {
         return name;
     }
+
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
 
     public Location getCurrent() {
         return current;
