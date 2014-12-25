@@ -78,9 +78,9 @@ public class Location {
         {
             build.append( " There are");
         }
-        for( Thing t : things){
-            build.append(t.getMessage());
-            build.append( ", ");
+            for( Thing t : things){
+                build.append(t.getMessage());
+                build.append( ", ");
         }
         if(things.size() !=0)
         {

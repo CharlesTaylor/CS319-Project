@@ -27,6 +27,8 @@ public class Map {
     }
 
     public Location getLocation( int x,int y){
+        if(locations[x][y] == null)
+            locations[x][y] =  locationFactory.getLocation(Location.LocType.Plains);
         return locations[x][y];
     }
 

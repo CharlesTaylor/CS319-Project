@@ -11,7 +11,7 @@ public class Player extends Character {
     private String seed;
     private int fullness;
     private int heat;
-    private int strength;
+
     private int sanity;
     private final int MAX_FULLNESS = 20;
     private boolean alive = true;
@@ -173,11 +173,11 @@ public class Player extends Character {
     }
 
     public int getStrength() {
-        return strength;
+        return getStrength();
     }
 
     public void setStrength(int strength) {
-        this.strength = strength;
+        setStrength(strength);
     }
 
     public int getSanity() {
