@@ -60,7 +60,14 @@ context Furniture inv:
 context Furniture inv:
 	not getMessage() = NULL
 
-	
+context Game::setAll() pre:
+	allThings.isEmpty() = true
+
+context Game::setAll() pre:
+	allCharacters.isEmpty() = true
+
+context Game::setAll() pre:
+	allDescriptions.isEmpty() = true
 
 
 	
