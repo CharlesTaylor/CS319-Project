@@ -41,7 +41,18 @@ context Character :: attack(c,i) post:
 
 context Character :: setStrength(s) pre:
 	s >= 0
+
+context Character :: setStrength(s) post:
+	self.s = s
 	
+context Character :: setHitpoint(h) pre:
+	h >= 0
+	
+context Character :: setHitpoint(h) post:
+	self.h = h
+
+
+
 	
 
 
