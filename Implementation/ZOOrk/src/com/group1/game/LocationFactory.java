@@ -12,6 +12,7 @@ public class LocationFactory {
 
     private static final int RAND_RAT = 100;
     final static int[] randRates  = new int[]{100,75,50,25};
+
     Game game;
 	private static LocationFactory instance = null;
 	 /**
@@ -103,10 +104,10 @@ public class LocationFactory {
                 things.add(t);
             }
         }
-        List<Character> characters = new ArrayList<Character>();
+        List<HostileCharacter> characters = new ArrayList<HostileCharacter>();
         for(Character c : game.getAllCharacters()){
             if(randomize.nextInt()%randRates[type.ordinal()]==0){
-                characters.add(c);
+                characters.add((HostileCharacter)c);
             }
         }
         List<String> typeDesc = game.getAllDescriptions()[type.ordinal()];

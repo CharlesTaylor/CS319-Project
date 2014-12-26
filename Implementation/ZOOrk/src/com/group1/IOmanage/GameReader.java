@@ -1,4 +1,6 @@
 package com.group1.IOmanage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.group1.game.*;
@@ -34,169 +36,165 @@ public class GameReader implements Reader
      */
     public String analyze( String input)
     {
+        input = input.trim();
+        while(input.contains("  ")){
+            input = input.replace("  "," ");
+        }
         //TODO
 
         Player character = game.getPlayer();
+
+        System.out.println(character.update());
         Location location = character.getCurrent();
         String[] parts = input.split( " ");
-        if(parts[0].equalsIgnoreCase("go"))
-        {
-            if (parts.length > 1) {
-                switch (parts[1].charAt(0)) {
-                    case 'n':
-                    case 'N':
-                        return game.getPlayer().go(Direction.North);
-                    //break;
-                    case 'e':
-                    case 'E':
-                        return game.getPlayer().go(Direction.East);
-                    //break;
-                    case 's':
-                    case 'S':
-                        return game.getPlayer().go(Direction.South);
-                    //break;
-                    case 'w':
-                    case 'W':
-                        return game.getPlayer().go(Direction.West);
-                    //break;
-                    default:
-                        System.out.println("invalid command");
-                        analyze("go");
-
+        if(character.isAlive()) {
+            if (parts[0].equalsIgnoreCase("inventory")) {
+                return character.getInventory().toString();
+            } else if (parts[0].equalsIgnoreCase("map")) {
+                for (int i = 0; i < character.getMap().getSize(); i++) {
+                    for (int j = 0; j < character.getMap().getSize(); j++) {
+                        if (character.getMap().getLocations()[j][i] != null)
+                            System.out.print("#");
+                        else
+                            System.out.print(" ");
+                    }
+                    System.out.println();
                 }
-            }
+            } else if (parts[0].equalsIgnoreCase("go")) {
+                if (parts.length > 1) {
+                    switch (parts[1].charAt(0)) {
+                        case 'n':
+                        case 'N':
+                            return game.getPlayer().go(Direction.North);
+                        //break;
+                        case 'e':
+                        case 'E':
+                            return game.getPlayer().go(Direction.East);
+                        //break;
+                        case 's':
+                        case 'S':
+                            return game.getPlayer().go(Direction.South);
+                        //break;
+                        case 'w':
+                        case 'W':
+                            return game.getPlayer().go(Direction.West);
+                        //break;
+                        default:
+                            System.out.println("invalid command");
+                            analyze("go");
+
+                    }
+                }
                 if (parts.length == 1)
                     return wantMoreCommand("go");
-        }
-        if(parts[0].equalsIgnoreCase("attack"))
-        {
-            if (parts.length > 2)
-            {
-                for(Character c : location.getCharacters())
-                {
-                    if(c.getName().equalsIgnoreCase(parts[1]))
-                    {
-                        for(Item i : character.getInventory())
-                        {
-                            if(i.getName().equalsIgnoreCase(parts[2]))
-                                return character.attack(c, i);
-                            if(  c.isDead()) {
-                                character.getCurrent().getCharacters().remove(c);
-                                character.getCurrent().getThings().addAll(c.getInventory());
-                                c = null;
+            }
+
+            if (parts[0].equalsIgnoreCase("attack")) {
+                if (parts.length > 3) {
+                    List<HostileCharacter> temp = new ArrayList<HostileCharacter>(location.getCharacters());
+                    for (HostileCharacter c : location.getCharacters()) {
+                        if (c.getName().equalsIgnoreCase(parts[1])) {
+                            for (Item i : character.getInventory()) {
+                                if (i.getName().equalsIgnoreCase(parts[3]))
+                                    return character.attack((HostileCharacter) c, i);
+                                if (c.isDead()) {
+                                    temp.remove(c);
+                                    character.getCurrent().getThings().add(c.getWeapon());
+                                    character.setGold(character.getGold() + (int) Math.random() * 20);
+                                }
+
                             }
 
                         }
+                    }
+                    character.getCurrent().setCharacters(temp);
 
-                    }
+                }
+                if (parts.length == 1) {
+                    return wantMoreCommand("attacktowhoandwithwhat");
+                }
+                if (parts.length == 2) {
+                    return wantMoreCommand("attacktowhoorwithwhat");
                 }
             }
-            if(parts.length == 1)
-            {
-                return wantMoreCommand("attacktowhoandwithwhat");
-            }
-            if(parts.length == 2)
-            {
-                return wantMoreCommand("attacktowhoorwithwhat");
-            }
-        }
-        if(parts[0].equalsIgnoreCase("interact"))
-        {
-            if(parts.length >1)
-            {
-                for(Thing t : game.getPlayer().getCurrent().getThings())
-                {
-                    if (t.getName().equalsIgnoreCase(parts[1]))
-                    {
-                        return game.getPlayer().interact(t);
+            if (parts[0].equalsIgnoreCase("interact")) {
+                if (parts.length > 1) {
+                    for (Thing t : game.getPlayer().getCurrent().getThings()) {
+                        if (t.getName().equalsIgnoreCase(parts[1])) {
+                            return game.getPlayer().interact(t);
+                        }
                     }
-                }
-            }
+                } else
+                    return wantMoreCommand("interact");
 
-            else
-                return wantMoreCommand("interact");
+            }
+            if (parts[0].equalsIgnoreCase("use")) {
+                if (parts.length > 1) {
+                    for (Item i : character.getInventory()) {
+                        if (i.getName().equalsIgnoreCase(parts[1])) {
+                            return game.getPlayer().use(i);
+                        }
+                    }
+                }
+                if (parts.length == 1) {
+                    return wantMoreCommand("use");
+                }
+            }
+            if (parts[0].equalsIgnoreCase("take")) {
+                if (parts.length > 1) {
+                    for (Thing i : character.getCurrent().getThings()) {
+                        if (i.getName().equalsIgnoreCase(parts[1]) && i instanceof Item) {
+                            return game.getPlayer().take((Item) i);
+                        }
+                    }
+                }
+                if (parts.length == 1) {
+                    return wantMoreCommand("take");
+                }
+            }
+            if (parts[0].equalsIgnoreCase("look")) {
+                if (parts.length > 1) {
+                    switch (parts[1].charAt(0)) {
+                        case 'n':
+                        case 'N':
+                            return game.getPlayer().look(Direction.North);
+                        //break;
+                        case 'e':
+                        case 'E':
+                            return game.getPlayer().look(Direction.East);
+                        //break;
+                        case 's':
+                        case 'S':
+                            return game.getPlayer().look(Direction.South);
+                        //break;
+                        case 'w':
+                        case 'W':
+                            return game.getPlayer().look(Direction.West);
+                        //break;
+                        default:
+                            System.out.println("invalid command");
+                            analyze("look");
+                    }
+                }
+                if (parts.length == 1) {
+                    return wantMoreCommand("look");
+                }
+            }
+            if (parts[0].equalsIgnoreCase("inspect")) {
+                if (parts.length > 1) {
+                    for (Thing t : game.getPlayer().getCurrent().getThings()) {
+                        if (t.getName().equalsIgnoreCase(parts[1])) {
+                            return game.getPlayer().interact(t);
+                        }
+                    }
+                }
+                if (parts.length == 1) {
+                    return wantMoreCommand("inspect");
+                }
+            }
+        }
 
-        }
-        if(parts[0].equalsIgnoreCase("use"))
-        {
-            if (parts.length > 1)
-            {
-                for(Item i : character.getInventory())
-                {
-                    if(i.getName().equalsIgnoreCase(parts[1]))
-                    {
-                        return game.getPlayer().use(i);
-                    }
-                }
-            }
-            if(parts.length == 1)
-            {
-                return wantMoreCommand("use");
-            }
-        }
-        if(parts[0].equalsIgnoreCase("take"))
-        {
-            if (parts.length > 1)
-            {
-                for(Item i : character.getInventory())
-                {
-                    if(i.getName().equalsIgnoreCase(input))
-                    {
-                        return game.getPlayer().take(i);
-                    }
-                }
-            }
-            if(parts.length == 1)
-            {
-                return wantMoreCommand("take");
-            }
-        }
-        if(parts[0].equalsIgnoreCase("look"))
-        {
-            if (parts.length > 1)
-            {
-                switch( parts[1].charAt(0))
-                {
-                    case 'n' :case 'N':
-                    return game.getPlayer().look(Direction.North);
-                    //break;
-                    case 'e':case 'E':
-                    return game.getPlayer().look(Direction.East);
-                    //break;
-                    case 's':case 'S':
-                    return game.getPlayer().look(Direction.South);
-                    //break;
-                    case 'w':case 'W':
-                    return game.getPlayer().look(Direction.West);
-                    //break;
-                    default:
-                        System.out.println( "invalid command");
-                        analyze("look");
-                }
-            }
-            if(parts.length == 1)
-            {
-                return wantMoreCommand("look");
-            }
-        }
-        if(parts[0].equalsIgnoreCase("inspect"))
-        {
-            if (parts.length > 1)
-            {
-                for(Thing t : game.getPlayer().getCurrent().getThings())
-                {
-                    if (t.getName().equalsIgnoreCase(parts[1]))
-                    {
-                        return game.getPlayer().interact(t);
-                    }
-                }
-            }
-            if(parts.length == 1)
-            {
-                return wantMoreCommand("inspect");
-            }
-        }
-        return "null";
+        return "You were saying ?";
     }
     public String wantMoreCommand(String lastCommand)
     {
@@ -257,18 +255,26 @@ public class GameReader implements Reader
                 System.out.println(game.getPlayer().getInventory());
                 String input = scan.nextLine();
                 String[] parts = input.split(" ");
-                for (Character c : location.getCharacters()) {
-                    if (c.getName().equalsIgnoreCase(parts[0])) {
-                        for (Item i : game.getPlayer().getInventory()) {
-                            if (i.getName().equalsIgnoreCase(parts[0])) {
-                                found = true;
-                                return game.getPlayer().attack(c, i);
-                            } else if (i.getName().equalsIgnoreCase(parts[2])) {
-                                found = true;
-                                return game.getPlayer().attack(c, i);
+                if(parts.length > 2) {
+                    for (HostileCharacter c : location.getCharacters()) {
+                        if (c.getName().equalsIgnoreCase(parts[0])) {
+                            for (Item i : game.getPlayer().getInventory()) {
+                                if (i.getName().equalsIgnoreCase(parts[0])) {
+                                    found = true;
+                                    return game.getPlayer().attack((HostileCharacter) c, i);
+                                } else if (i.getName().equalsIgnoreCase(parts[2])) {
+                                    found = true;
+                                    return game.getPlayer().attack((HostileCharacter) c, i);
+                                }
+                                if (c.isDead()) {
+                                    character.setGold(character.getGold()+(int)Math.random()*20);
+                                    character.getCurrent().getCharacters().remove(c);
+                                    character.getCurrent().getThings().add(c.getWeapon());
+                                    c = null;
+                                }
                             }
-                        }
 
+                        }
                     }
                 }
             }
@@ -302,14 +308,14 @@ public class GameReader implements Reader
         if(lastCommand.equalsIgnoreCase("take"))
         {
             System.out.println("take what?");
-            System.out.println(character.getInventory());
             String input = scan.nextLine();
-            for(Item i : character.getInventory())
+            for(Thing i : character.getCurrent().getThings())
             {
-                if(i.getName().equalsIgnoreCase(input))
+
+                if(i.getName().equalsIgnoreCase(input) && i instanceof Item)
                 {
                     found = true;
-                    return game.getPlayer().take(i);
+                    return game.getPlayer().take((Item)i);
                 }
             }
 
@@ -364,7 +370,7 @@ public class GameReader implements Reader
             }
 
         }
-        return null;
+        return "What !!.";
 
     }
 }

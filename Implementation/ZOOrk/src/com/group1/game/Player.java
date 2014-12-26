@@ -11,12 +11,24 @@ public class Player extends Character {
     private String seed;
     private int fullness;
     private Map map;
-
     public void setSeed(String seed) {
         this.seed = seed;
     }
 
     private int heat;
+    private int gold;
+
+    public int getGold() {
+        return gold;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
 
     private int sanity;
     private final int MAX_FULLNESS = 20;
@@ -47,6 +59,8 @@ public class Player extends Character {
         this.x=x;
         this.y=y;
         setStrength(15);
+        setHitpoint(50);
+        setFullness(100);
 
     }
 
@@ -68,7 +82,8 @@ public class Player extends Character {
         String message = "";
         if (getCurrent().isPassable(direction)) {
             setCurrent(getAdjacent(direction));
-            message = getCurrent().getMessage();
+//            message = getCurrent().getMessage();
+            message = "You kept walking...\n";
         }
         else
             message = "You can't go that way.";
@@ -138,6 +153,7 @@ public class Player extends Character {
     public String take(Item item) {
         if (inventory.size() < MAX_NUM_ITEMS) {
             inventory.add(item);
+            getCurrent().getThings().remove(item);
             return "Taken.";
         }
         else
@@ -201,19 +217,27 @@ public class Player extends Character {
         return fullness;
     }
 
+    public boolean isAlive() {
+        return alive;
+    }
+
     public String update() {
-        // TODO
-        String message = null;
-        fullness--;
-        if (fullness <= 0) {
-            alive = false;
-            message = "You are dead! GAME OVER";
+        if(alive) {
+            String message = null;
+            if(getHitpoint()<0)
+                alive = false;
+            fullness--;
+            if (fullness <= 0) {
+                alive = false;
+                message = "You are dead! GAME OVER";
+            }
+            else if (fullness < 5)
+                message = "Your health is running dangerously low. If you don't eat something you will die.";
+            else
+                message = "";
+            return message;
         }
-        else if (fullness < 5)
-            message = "Your health is running dangerously low. If you don't eat something you will die.";
-        else
-            message = "";
-        return message;
+        return "You are dead. You can't move";
     }
 
     public void setFullness(int fullness) {

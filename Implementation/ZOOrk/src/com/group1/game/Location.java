@@ -17,7 +17,7 @@ public class Location {
      */
     private boolean passable[];
 
-    public List<Character> getCharacters() {
+    public List<HostileCharacter> getCharacters() {
         return characters;
     }
 
@@ -36,10 +36,10 @@ public class Location {
      * generated according to given List
      */
     private List<Thing> things;
-    private List<Character> characters;
+    private List<HostileCharacter> characters;
 
     //Constructor for Loading Locations
-    public Location( Map map, boolean passable[],List<Thing> things, List<Character> characters,String description){
+    public Location( Map map, boolean passable[],List<Thing> things, List<HostileCharacter> characters,String description){
         this.map = map;
         this.x = x;this.y =y;
         this.passable = passable;
@@ -62,14 +62,18 @@ public class Location {
     }
 
 
+    public void setCharacters(List<HostileCharacter> characters) {
+        this.characters = characters;
+    }
+
     public String getMessage(){
         if(things == null) {
-            things = new ArrayList<>();
+            things = new ArrayList<Thing>();
             System.out.println( "Characters null");
         }
         if(characters == null)
         {
-            characters = new ArrayList<>();
+            characters = new ArrayList<HostileCharacter>();
 
         }
         StringBuilder build = new StringBuilder(things.size() * 10+characters.size()*10+30);

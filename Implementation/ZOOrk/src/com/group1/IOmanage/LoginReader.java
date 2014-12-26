@@ -44,6 +44,10 @@ public class LoginReader implements Reader {
                 }
             }
         }
+        else if(parts[0].equalsIgnoreCase("Save")){
+            gameSys.saveGame();
+        }
+
         return "";
     }
 }

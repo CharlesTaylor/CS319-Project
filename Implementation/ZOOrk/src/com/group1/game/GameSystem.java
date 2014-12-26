@@ -6,15 +6,11 @@ import com.group1.datamanage.User;
 import com.group1.datamanage.UserManagement;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
-import jdk.nashorn.internal.ir.WhileNode;
 
+import java.io.*;
 import java.util.Scanner;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -23,6 +19,7 @@ import java.util.ArrayList;
 */
 public class GameSystem {
 	public static final String EXIT = "exit";
+	public static final String LOGOUT = "logout";
 	private static GameSystem instance = null;
 	protected GameSystem(){
 		mng = UserManagement.getInstance();
@@ -66,8 +63,17 @@ public class GameSystem {
 
 	public void saveGame(){
 		XStream xstream = new XStream(new StaxDriver());
+		File userfile = new File("Data//Users//SaveGames//" + user.getUsername() +".xml");
+		Writer writer;
 		try {
+			if(!userfile.exists()){
+				writer = new BufferedWriter(new OutputStreamWriter(
+						new FileOutputStream("Data//Users//SaveGames//" + user.getUsername() +".xml"), "utf-8"));
+				writer.write("");
+			}
+
 			xstream.toXML(game, new FileWriter( new File("Data//Users//SaveGames//" + user.getUsername() +".xml")));
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -78,21 +84,9 @@ public class GameSystem {
 		XStream xstream = new XStream(new StaxDriver());
 		String 	data = user.getData();
 		FileWriter userFile = null;
-		try{
-			userFile = new FileWriter("Data//Users//SaveGames//" + user.getUsername() +".xml");
-		}catch (FileNotFoundException f){
-			fileExists = false;
-		}catch (IOException e){
-			e.printStackTrace();
-		}finally {
-			if(userFile != null)
-				try {
-					userFile.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-		}
-		if( !fileExists){
+		File userfile =new File("Data//Users//SaveGames//" + user.getUsername() +".xml");
+
+		if( !userfile.exists()){
 			//Generate Game According to Default Settings
 			player = new Player(user.getUsername(),new ArrayList<Item>(),Map.SIZE/2,Map.SIZE/2);
 			player.setSeed(new Integer((int) (Math.random() * 1000)).toString());
@@ -111,11 +105,24 @@ public class GameSystem {
 
 	}
 
+	public void setReader(Reader reader) {
+		this.reader = reader;
+	}
+
 	public void run(){
+
 		String input = read.nextLine();
 		while( !input.equalsIgnoreCase(EXIT)){
+			if(input.equalsIgnoreCase(LOGOUT))
+			{
+				reader = LoginReader.getInstance(this);
+			}
 			System.out.println(reader.analyze( input));
+			if(reader instanceof GameReader)
+				System.out.println(game.getPlayer().getCurrent().getMessage());
+
 			input = read.nextLine();
+
 		}
 
 

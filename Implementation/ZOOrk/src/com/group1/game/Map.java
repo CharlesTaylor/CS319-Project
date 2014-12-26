@@ -9,6 +9,11 @@ public class Map {
     private final double SIZEMULT = 2;
     int size;
     String name;
+
+    public Location[][] getLocations() {
+        return locations;
+    }
+
     Game game;
     Location[][] locations;
     LocationFactory locationFactory;
@@ -33,12 +38,25 @@ public class Map {
             game.getPlayer().setXY((int)(size/SIZEMULT+x),(int)(size/SIZEMULT+y));
 
         }
-        if(locations[x][y] == null)
-            locations[x][y] =  locationFactory.getLocation(Location.LocType.Plains);
+        if(locations[x][y] == null) {
+            if (x > 48 && y > 48 && x < 64 && y < 64)
+                locations[x][y] = locationFactory.getLocation(Location.LocType.Dungeon);
+            else if (x > 28 && y > 28 && x < 34 && y < 34)
+                locations[x][y] = locationFactory.getLocation(Location.LocType.Village);
+            else if (x > 48 && y > 0 && x < 64 && y < 16)
+                locations[x][y] = locationFactory.getLocation(Location.LocType.Castle);
+            else
+                locations[x][y] = locationFactory.getLocation(Location.LocType.Plains);
+        }
         return locations[x][y];
     }
 
+    public int getSize() {
+        return size;
+    }
+
     /**
+
      * enlarge method
      * enlarges the map with the following pattern
      *

@@ -61,7 +61,7 @@ public abstract class Character {
      * @param item to attack with
      * @return resulting boolean or string message depending on the implementation
      */
-    public String attack(Character character,Item item) {
+    public String attack(HostileCharacter character,Item item) {
         StringBuilder build = new StringBuilder(300);
         character.setHitpoint(character.getHitpoint() - getStrength() * item.getDamage());
         build.append(getName());
@@ -69,11 +69,12 @@ public abstract class Character {
         build.append( getStrength()*item.getDamage());
         build.append(" damage to ");
         build.append(character.getName());
+        build.append(". ");
         build.append( character.getName());
         build.append( "fought back and ");
-        setHitpoint(getHitpoint() - character.getStrength() * character.getInventory().get(0).getDamage());
+        setHitpoint(getHitpoint() - name.length()* character.getWeapon().getDamage());
         build.append(" inflicted ");
-        build.append( getStrength()*item.getDamage());
+        build.append( character.getWeapon().getDamage() );
         build.append(" damage to ");
         build.append(getName());
         return build.toString();
