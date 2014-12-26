@@ -70,6 +70,10 @@ public class Location {
         return null;
     }
 
+    public List<Character> getCharacters()
+    {
+        return characters;
+    }
     public String getMessage(){
         StringBuilder build = new StringBuilder(things.size() * 10+characters.size()*10+30);
 
