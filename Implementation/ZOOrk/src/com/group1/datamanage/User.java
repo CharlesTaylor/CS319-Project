@@ -26,6 +26,6 @@ public class User {
     }
     public String getData(){ return data;}
     public boolean tryPassword(String pass){
-        return password == pass;
+        return password.equals(pass);
     }
 }

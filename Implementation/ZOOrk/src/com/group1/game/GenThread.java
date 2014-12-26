@@ -23,25 +23,26 @@ public class GenThread extends Thread {
         listofLocs = new ArrayList(numOfLocations);
     }
     public void run(){
+        System.out.println(numOfLocations);
         for( int i = 0; i < numOfLocations ;i++){
             boolean[] passables = new boolean[]{true,true,true,true,false,false};
             List<Thing> things = new ArrayList<Thing>();
-            for(Thing t : game.getAllThings()){
-                if(randomize.nextInt()%randrate==0){
-                    things.add(t);
-                }
-            }
+//            for(Thing t : game.getAllThings()){
+//                if(randomize.nextInt()%randrate==0){
+//                    things.add(t);
+//                }
+//            }
             List<Character> characters = new ArrayList<Character>();
-            for(Character c : game.getAllCharacters()){
-                if(randomize.nextInt()%randrate==0){
-                    characters.add(c);
-                }
-            }
-            List<String> typeDesc = game.getAllDescriptions()[type.ordinal()];
-            listofLocs.add( new Location(game.getMap(),passables,things,characters,typeDesc.get(randomize.nextInt()%typeDesc.size())));
+//            for(Character c : game.getAllCharacters()){
+//                if(randomize.nextInt()%randrate==0){
+//                    characters.add(c);
+//                }
+//            }
+//            List<String> typeDesc = game.getAllDescriptions()[type.ordinal()];
+//            listofLocs.add( new Location(game.getMap(),passables,things,characters,typeDesc.get(randomize.nextInt()%typeDesc.size())));
         }
     }
     public List<Location> getLocs(){
-        return Collections.unmodifiableList(listofLocs);
+        return listofLocs;
     }
 }

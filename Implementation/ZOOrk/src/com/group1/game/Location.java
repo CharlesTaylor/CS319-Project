@@ -17,6 +17,10 @@ public class Location {
      */
     private boolean passable[];
 
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
     public enum LocType{ Plains,Village,Dungeon,Castle};
 
     public List<Thing> getThings() {
@@ -56,25 +60,18 @@ public class Location {
         this.x=x;
         this.y=y;
     }
-    public Location getAdjacent(Direction d){
-        switch(d){
-            case North:
-                return map.getLocation(x,y+1);
-            case South:
-                return map.getLocation(x,y-1);
-            case East:
-                return map.getLocation(x+1,y);
-            case West:
-                return map.getLocation(x-1,y);
-        }
-        return null;
-    }
 
-    public List<Character> getCharacters()
-    {
-        return characters;
-    }
+
     public String getMessage(){
+        if(things == null) {
+            things = new ArrayList<>();
+            System.out.println( "Characters null");
+        }
+        if(characters == null)
+        {
+            characters = new ArrayList<>();
+
+        }
         StringBuilder build = new StringBuilder(things.size() * 10+characters.size()*10+30);
 
         build.append(description);
@@ -84,7 +81,7 @@ public class Location {
         }
             for( Thing t : things){
                 build.append("a ");
-                build.append(t.getMessage());
+                build.append(t.getName());
                 build.append( ", ");
         }
         if(things.size() !=0)
@@ -101,7 +98,7 @@ public class Location {
             build.append(c.getName());
             build.append( ", ");
         }
-        if(things.size() !=0)
+        if(characters.size() !=0)
         {
             build.append( "at this location.");
         }

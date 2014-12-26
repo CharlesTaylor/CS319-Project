@@ -9,6 +9,18 @@ import java.util.List;
  *
  */
 public abstract class Character {
+
+    boolean awake;
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    boolean dead;
     private int strength;
     /**
      * Characters name
@@ -25,8 +37,6 @@ public abstract class Character {
     private List<Item> inventory;
 
     private int hitpoint;
-
-    private int strength;
 
     /**
      * Constructor for Character, Designed to work both when initialization and loading the game
@@ -51,24 +61,24 @@ public abstract class Character {
      * @param item to attack with
      * @return resulting boolean or string message depending on the implementation
      */
-<<<<<<< HEAD
     public String attack(Character character,Item item) {
-        StringBuilder build = new StringBuilder(150);
-        character.setHitpoint(character.getHitpoint() - character.getStrength() * item.getDamage());
-        build.append(" Remaining strength of the ");
+        StringBuilder build = new StringBuilder(300);
+        character.setHitpoint(character.getHitpoint() - getStrength() * item.getDamage());
+        build.append(getName());
+        build.append(" inflicted ");
+        build.append( getStrength()*item.getDamage());
+        build.append(" damage to ");
         build.append(character.getName());
-        build.append(" : ");
-        build.append(character.getStrength());
+        build.append( character.getName());
+        build.append( "fought back and ");
+        setHitpoint(getHitpoint() - character.getStrength() * character.getInventory().get(0).getDamage());
+        build.append(" inflicted ");
+        build.append( getStrength()*item.getDamage());
+        build.append(" damage to ");
+        build.append(getName());
         return build.toString();
-=======
-    public String attack(Character character,Item item){
-        character.setHitpoint( character.getHitpoint() - strength * item.getDamage());
-        return "Message";
     }
 
->>>>>>> origin/master
-
-    }
     public String getName() {
         return name;
     }
@@ -102,4 +112,6 @@ public abstract class Character {
     public void setCurrent(Location current) {
         this.current = current;
     }
+
+
 }

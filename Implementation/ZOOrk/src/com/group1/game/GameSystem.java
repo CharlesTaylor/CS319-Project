@@ -1,10 +1,13 @@
 package com.group1.game;
 import com.group1.IOmanage.GameReader;
+import com.group1.IOmanage.LoginReader;
 import com.group1.IOmanage.Reader;
 import com.group1.datamanage.User;
 import com.group1.datamanage.UserManagement;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
+import jdk.nashorn.internal.ir.WhileNode;
+
 import java.util.Scanner;
 
 
@@ -19,10 +22,12 @@ import java.util.ArrayList;
 * Created by Fatih on 02/12/2014.
 */
 public class GameSystem {
+	public static final String EXIT = "exit";
 	private static GameSystem instance = null;
 	protected GameSystem(){
 		mng = UserManagement.getInstance();
 		read = new Scanner(System.in);
+		reader = LoginReader.getInstance(this);
 	}
 	public static GameSystem getInstance(){
 		if( instance == null){
@@ -47,13 +52,16 @@ public class GameSystem {
 		this.player = player;
 		game = new Game( player);
 		reader = GameReader.getInstance(game);
-		run();
+		System.out.println(player.getCurrent().getMessage());
 	}
-	public void login(String name, String pass){
+	public boolean login(String name, String pass){
 		if(mng.checkIDPassword(name,pass)){
 			user = mng.getUser(name);
+			generateGame( user);
+			return true;
 		}
-		generateGame( user);
+		return false;
+
 	}
 
 	public void saveGame(){
@@ -87,8 +95,12 @@ public class GameSystem {
 		if( !fileExists){
 			//Generate Game According to Default Settings
 			player = new Player(user.getUsername(),new ArrayList<Item>(),Map.SIZE/2,Map.SIZE/2);
+			player.setSeed(new Integer((int) (Math.random() * 1000)).toString());
 			game = new Game( player);
+			game.setAll();
 			map = new Map( game,Map.SIZE);
+			game.setMap(map);
+			player.setMap(map);
 		}else{
 			//Generate Game According to data
 
@@ -100,7 +112,11 @@ public class GameSystem {
 	}
 
 	public void run(){
-		reader.analyze( read.nextLine());
+		String input = read.nextLine();
+		while( !input.equalsIgnoreCase(EXIT)){
+			System.out.println(reader.analyze( input));
+			input = read.nextLine();
+		}
 
 
 	}

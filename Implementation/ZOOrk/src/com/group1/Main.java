@@ -14,18 +14,14 @@ import com.thoughtworks.xstream.*;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 public class Main {
-    public static final String EXIT = "exit";
-    public static final String LOGIN = "login";
-    public static final String REGISTER = "register";
+
 
 
     public static void main(String[] args) throws FileNotFoundException {
 	// write your code here
-        Game game = new Game(null);
-        game.setAll();
-//        encode.writeObject(list);
-//        encode.close();
-        System.out.println();//Welcome Message Here
+
+        GameSystem gameSystem = GameSystem.getInstance();
+        gameSystem.run();
 //        String input = scan.nextLine();
 //        while(!input.equalsIgnoreCase(EXIT)){
 //

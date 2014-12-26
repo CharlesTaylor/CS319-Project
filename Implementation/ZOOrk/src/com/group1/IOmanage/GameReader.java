@@ -1,11 +1,7 @@
 package com.group1.IOmanage;
 import java.util.Scanner;
 
-import com.group1.game.Direction;
-import com.group1.game.Game;
-import com.group1.game.Location;
-import com.group1.game.Thing;
-import com.group1.game.Item;
+import com.group1.game.*;
 import com.group1.game.Character;
 
 /**
@@ -42,7 +38,8 @@ public class GameReader implements Reader
     {
         //TODO
 
-        Character character = null;
+        Player character = game.getPlayer();
+        Location location = character.getCurrent();
         String[] parts = input.split( " ");
         if(parts[0].equalsIgnoreCase("go"))
         {
@@ -71,9 +68,41 @@ public class GameReader implements Reader
                     return wantMoreCommand("go");
             }
         }
+        if(parts[0].equalsIgnoreCase("attack"))
+        {
+            if (parts.length > 2)
+            {
+                for(Character c : location.getCharacters())
+                {
+                    if(c.getName().equalsIgnoreCase(parts[1]))
+                    {
+                        for(Item i : character.getInventory())
+                        {
+                            if(i.getName().equalsIgnoreCase(parts[2]))
+                                return character.attack(c, i);
+                            if(  c.isDead()) {
+                                character.getCurrent().getCharacters().remove(c);
+                                character.getCurrent().getThings().addAll(c.getInventory());
+                                c = null;
+                            }
+
+                        }
+
+                    }
+                }
+            }
+            if(parts.length == 1)
+            {
+                return wantMoreCommand("attacktowhoandwithwhat");
+            }
+            if(parts.length == 2)
+            {
+                return wantMoreCommand("attacktowhoorwithwhat");
+            }
+        }
         if(parts[0].equalsIgnoreCase("interact"))
         {
-            if (parts.length > 1)
+            if(parts.length >1)
             {
                 for(Thing t : game.getPlayer().getCurrent().getThings())
                 {
@@ -83,10 +112,10 @@ public class GameReader implements Reader
                     }
                 }
             }
-            if(parts.length == 1)
-            {
+
+            else
                 return wantMoreCommand("interact");
-            }
+
         }
         if(parts[0].equalsIgnoreCase("use"))
         {
@@ -109,11 +138,11 @@ public class GameReader implements Reader
         {
             if (parts.length > 1)
             {
-                for(Item i : character.getInventory())
+                for(Thing i : character.getCurrent().getThings())
                 {
-                    if(i.getName().equalsIgnoreCase(parts[1]))
+                    if(i.getName().equalsIgnoreCase(parts[1]) && i instanceof Item)
                     {
-                        return game.getPlayer().take(i);
+                        return game.getPlayer().take((Item)i);
                     }
                 }
             }
@@ -172,7 +201,7 @@ public class GameReader implements Reader
     public String wantMoreCommand(String lastCommand)
     {
 
-        Character character = null;
+        Player character = game.getPlayer();
 
         Scanner scan = new Scanner(System.in);
         if(lastCommand.equalsIgnoreCase("go"))
@@ -208,6 +237,27 @@ public class GameReader implements Reader
                 {
                     return game.getPlayer().interact(t);
                 }
+            }
+        }
+        if(lastCommand.equalsIgnoreCase("attacktowhoandwithwhat"))
+        {
+            Location location = character.getCurrent();
+            System.out.println("Attack to who and with what?");
+            String input = scan.nextLine();
+            String[] parts = input.split( " ");
+            for(Character c : location.getCharacters())
+            {
+                    if(c.getName().equalsIgnoreCase(parts[0]))
+                    {
+                        for(Item i : game.getPlayer().getInventory())
+                        {
+                            if(i.getName().equalsIgnoreCase(parts[0]))
+                                return game.getPlayer().attack(c, i);
+                            else if(i.getName().equalsIgnoreCase(parts[2]))
+                                return game.getPlayer().attack(c, i);
+                        }
+
+                    }
             }
         }
         if(lastCommand.equalsIgnoreCase("use"))

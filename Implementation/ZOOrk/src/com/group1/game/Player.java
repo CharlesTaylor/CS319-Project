@@ -10,6 +10,12 @@ import java.util.List;
 public class Player extends Character {
     private String seed;
     private int fullness;
+    private Map map;
+
+    public void setSeed(String seed) {
+        this.seed = seed;
+    }
+
     private int heat;
 
     private int sanity;
@@ -17,6 +23,13 @@ public class Player extends Character {
     private final int MAX_NUM_ITEMS = 15;
     private boolean alive = true;
     int x,y;
+
+    @Override
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    private List<Item> inventory;
 
 
     /**
@@ -28,10 +41,18 @@ public class Player extends Character {
      * @param y         Location of the Player
      */
 
-    public Player(String name, List<Item> inventory, int x, int y) {
+    public Player(String name, List<Item> inventory,int x, int y) {
         super(name);
+        this.inventory = inventory;
         this.x=x;
         this.y=y;
+        setStrength(15);
+
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+        setCurrent(map.getLocation(x,y));
     }
 
     /**
@@ -46,7 +67,7 @@ public class Player extends Character {
     public String go(Direction direction) {
         String message = "";
         if (getCurrent().isPassable(direction)) {
-            setCurrent(getCurrent().getAdjacent(direction));
+            setCurrent(getAdjacent(direction));
             message = getCurrent().getMessage();
         }
         else
@@ -54,6 +75,19 @@ public class Player extends Character {
         return message;
     }
 
+    public Location getAdjacent(Direction d){
+        switch(d){
+            case North:
+                return map.getLocation(x,++y);
+            case South:
+                return map.getLocation(x,--y);
+            case East:
+                return map.getLocation(++x,y);
+            case West:
+                return map.getLocation(--x,y);
+        }
+        return null;
+    }
     /**
      * Player interacts with given Thing if it is possible,
      * result given with an appropriate string message
@@ -102,8 +136,8 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String take(Item item) {
-        if (super.getInventory().size() < MAX_NUM_ITEMS) {
-            super.getInventory().add(item);
+        if (inventory.size() < MAX_NUM_ITEMS) {
+            inventory.add(item);
             return "Taken.";
         }
         else
@@ -121,10 +155,10 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String drop(Item item) {
-        if (super.getInventory().isEmpty())
+        if (inventory.isEmpty())
             return "Nothing to be dropped.";
         else {
-            if (super.getInventory().remove(item))
+            if (inventory.remove(item))
                 return "Dropped " + item.getName();
             else
                 return "You don't have the " + item.getName();
@@ -141,7 +175,7 @@ public class Player extends Character {
      * @return resulting boolean or string message depending on the implementation
      */
     public String look(Direction direction) {
-        return getCurrent().getAdjacent(direction).getMessage();
+        return getAdjacent(direction).getMessage();
     }
 
     /**
@@ -167,7 +201,7 @@ public class Player extends Character {
         return fullness;
     }
 
-    private String update() {
+    public String update() {
         // TODO
         String message = null;
         fullness--;
@@ -195,11 +229,11 @@ public class Player extends Character {
     }
 
     public int getStrength() {
-        return getStrength();
+        return super.getStrength();
     }
 
     public void setStrength(int strength) {
-        setStrength(strength);
+        super.setStrength(strength);
     }
 
     public int getSanity() {
@@ -208,5 +242,10 @@ public class Player extends Character {
 
     public void setSanity(int sanity) {
         this.sanity = sanity;
+    }
+
+    public void setXY(int x,int y){
+        this.x = x;
+        this.y = y;
     }
 }

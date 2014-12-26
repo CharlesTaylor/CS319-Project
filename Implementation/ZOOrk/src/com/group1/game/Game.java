@@ -59,7 +59,7 @@ public class Game {
             allDescriptions[i] = new ArrayList<String>();
             while(read.hasNextLine()){
                 String temp = read.nextLine();
-                System.out.println(temp);
+                //System.out.println(temp);
                 if(temp.equals("$"))
                     break;
                 allDescriptions[i].add(temp);

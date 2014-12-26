@@ -24,9 +24,15 @@ public class Map {
         this.game = game;
         locationFactory = new LocationFactory( game);
         locations = new Location[initial][initial];
+        locations[initial/2][initial/2] = locationFactory.getLocation(Location.LocType.Plains);
     }
 
     public Location getLocation( int x,int y){
+        if(x == SIZE -1 || y == SIZE -1 || x ==0 || y == 0){
+            enlarge();
+            game.getPlayer().setXY((int)(size/SIZEMULT+x),(int)(size/SIZEMULT+y));
+
+        }
         if(locations[x][y] == null)
             locations[x][y] =  locationFactory.getLocation(Location.LocType.Plains);
         return locations[x][y];

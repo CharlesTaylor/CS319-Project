@@ -8,9 +8,13 @@ import java.util.List;
 public class HostileCharacter extends NonPlayerCharacter {
 
 
-    boolean awake;
+
     Item weapon;
 
+
+    public Item getWeapon() {
+        return weapon;
+    }
 
     /**
      * Constructor for HostileCharacter, Designed to work both when initialization and loading the game
@@ -22,6 +26,18 @@ public class HostileCharacter extends NonPlayerCharacter {
     public HostileCharacter(String name, Item weapon) {
         super(name);
         this.weapon = weapon;
+        getInventory().add(weapon);
+        setStrength(15);
+        dead= false;
+    }
+
+    public void setHitpoint(int hitpoint) {
+        if(hitpoint <0)
+        {
+            dead = true;
+        }
+
+        super.setHitpoint(hitpoint);
     }
 
     public boolean getAwake() {

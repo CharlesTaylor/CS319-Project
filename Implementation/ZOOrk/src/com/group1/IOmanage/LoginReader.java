@@ -23,10 +23,27 @@ public class LoginReader implements Reader {
     private GameSystem gameSys;
 
     @Override
-    public String analyze(int input) {
-        switch (input){
-            case 1:
-                return "Choose a username\n";
+    public String analyze(String input) {
+
+        String[] parts = input.split( " ");
+        if(parts[0].equalsIgnoreCase("login")){
+            if(parts.length > 2){
+                if (!gameSys.login(parts[1],parts[2])) {
+                    return "Login Failed";
+                }
+            }
         }
+        else if(parts[0].equalsIgnoreCase("register")){
+            if(parts.length > 3){
+                if(gameSys.getMng().newUser(parts[1],parts[2],parts[3])){
+                    return "Register Success";
+                }
+                else
+                {
+                    return "Register Failed";
+                }
+            }
+        }
+        return "";
     }
 }

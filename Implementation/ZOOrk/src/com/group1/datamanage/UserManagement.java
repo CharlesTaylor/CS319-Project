@@ -26,7 +26,7 @@ public class UserManagement {
 	}
 		return instance;
 	}
-    Map<String,User> userMap;
+    public Map<String,User> userMap;
 
 
 
@@ -46,7 +46,9 @@ public class UserManagement {
 
 
     public boolean checkIDPassword(String id,String pass){
-        return userMap.get(id).tryPassword(pass);
+        if(userMap.get(id)!=null)
+            return userMap.get(id).tryPassword(Integer.toHexString(pass.hashCode()));
+        return false;
     }
     public User getUser( String id){ return userMap.get(id);}
     public boolean newUser( String id, String pass, String passAgain){
@@ -55,6 +57,7 @@ public class UserManagement {
             try {
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("Data\\users.dat", true)));
                 out.println(id + " " + Integer.toHexString(pass.hashCode()));
+                userMap.put(id,new User(id,Integer.toHexString(pass.hashCode())));
                 return true;
             }catch (IOException e) {
                 e.printStackTrace();
